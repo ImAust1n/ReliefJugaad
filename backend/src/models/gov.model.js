@@ -26,17 +26,12 @@ const govSchema = new mongoose.Schema({
         type: String,
     },
 
-    type: {
-        type: String,
-        required: true,
-    },
-
     phoneNumber: {
         type: String,
         required: true,
     },
 
-    registrationNumber: {
+    type: {
         type: String,
         required: true,
     },

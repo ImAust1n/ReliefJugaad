@@ -1,6 +1,6 @@
 import express from "express";
-import { signup, login, logout, checkAuth } from "../controllers/ngo.controller.js";
-import { protectRoute } from "../middleware/ngo.middleware.js";
+import { signup, login, logout, checkAuth } from "../controllers/gov.controller.js";
+import { protectRoute } from "../middleware/gov.middleware.js";
 
 const router = express.Router();
 
