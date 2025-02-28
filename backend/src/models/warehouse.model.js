@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const dropLocationSchema = new mongoose.Schema({
+const warehouseSchema = new mongoose.Schema({
     ngoId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "NGO",
@@ -24,10 +24,21 @@ const dropLocationSchema = new mongoose.Schema({
 
     location: {
         type: String,
+        required: true,
     },
 
+    latitude: {
+        type: String,
+        required: true,
+    },
+
+    longitude: {
+        type: String,
+        required: true,
+    },
+    
 }, { timestamps: true });
 
-const DropLocation = mongoose.model("DropLocation", dropLocationSchema);
+const Warehouse = mongoose.model("Warehouse", warehouseSchema);
 
-export default DropLocation;
+export default Warehouse;

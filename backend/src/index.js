@@ -7,6 +7,7 @@ import ngoRoutes from "./routes/ngo.route.js"
 import govRoutes from "./routes/gov.route.js"
 import disasterRoutes from "./routes/disaster.route.js"
 import donationRoutes from "./routes/donation.route.js"
+import warehouseRoutes from "./routes/warehouse.route.js"
 import { connectDB } from "./lib/db.js"
 
 dotenv.config()
@@ -32,8 +33,10 @@ app.use('/api/ngos', ngoRoutes);
 app.use('/api/gov', govRoutes);
 app.use('/api/disasters', disasterRoutes);
 app.use('/api/donations', donationRoutes);
-// app.use('/api/camp', campRoutes);
+app.use('/api/warehouse', warehouseRoutes);
 // app.use('/api/inventory', inventoryRoutes);
+app.use('/api/camp', campRoutes);
+// app.use('/api/requirements', requirementsRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

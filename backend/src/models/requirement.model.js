@@ -17,15 +17,10 @@ const inventorySchema = new mongoose.Schema({
         required: true,
     },
 
-    district: {
+    status: {
         type: String,
         required: true,
-    },
-
-    state: {
-        type: String,
-        required: true,
-    },
+    }
 
 }, { timestamps: true });
 
