@@ -8,6 +8,7 @@ import govRoutes from "./routes/gov.route.js"
 import disasterRoutes from "./routes/disaster.route.js"
 import donationRoutes from "./routes/donation.route.js"
 import warehouseRoutes from "./routes/warehouse.route.js"
+import campRoutes from "./routes/camp.route.js"
 import { connectDB } from "./lib/db.js"
 
 dotenv.config()

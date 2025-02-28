@@ -25,6 +25,16 @@ const campSchema = new mongoose.Schema({
         type: String,
     },
 
+    latitude: {
+        type: String,
+        required: true,
+    },
+
+    longitude: {
+        type: String,
+        required: true,
+    },
+
 }, { timestamps: true });
 
 const Camp = mongoose.model("Camp", campSchema);
