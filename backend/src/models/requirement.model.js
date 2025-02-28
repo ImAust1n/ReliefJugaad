@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const inventorySchema = new mongoose.Schema({
+const requirementSchema = new mongoose.Schema({
     campId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Camp",
@@ -17,13 +17,8 @@ const inventorySchema = new mongoose.Schema({
         required: true,
     },
 
-    status: {
-        type: String,
-        required: true,
-    }
-
 }, { timestamps: true });
 
-const Inventory = mongoose.model("Inventory", inventorySchema);
+const Requirement = mongoose.model("Requirement", requirementSchema);
 
-export default Inventory;
+export default Requirement;
