@@ -1,11 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.route.js"
 import ngoRoutes from "./routes/ngo.route.js"
 import govRoutes from "./routes/gov.route.js"
+import disasterRoutes from "./routes/disaster.route.js"
 import { connectDB } from "./lib/db.js"
 
 dotenv.config()
@@ -27,13 +27,12 @@ app.get('/', (req, res) => {
 
 // Use Routes
 app.use('/api/auth', authRoutes);
-// app.use('/api/disasters', disasterRoutes);
-// app.use('/api/donations', donationRoutes);
 app.use('/api/ngos', ngoRoutes);
 app.use('/api/gov', govRoutes);
+app.use('/api/disasters', disasterRoutes);
+// app.use('/api/donations', donationRoutes);
 // app.use('/api/camp', campRoutes);
 // app.use('/api/inventory', inventoryRoutes);
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
