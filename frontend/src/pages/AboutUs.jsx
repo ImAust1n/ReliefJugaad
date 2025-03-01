@@ -1,11 +1,11 @@
 import React from 'react'
 
-const DonorPage = () => {
+const AboutUs = () => {
   return (
     <div>
-      
+      About Us
     </div>
   )
 }
 
-export default DonorPage
+export default AboutUs
