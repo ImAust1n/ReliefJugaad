@@ -2,7 +2,13 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import './index.css'
+import Header from './components/Header'
+
 import HomePage from './pages/HomePage'
+
+import ChooseLogin from './pages/ChooseLogin'
+import AboutUs from './pages/AboutUs.jsx'
+import EmergencyContacts from './pages/EmergencyContacts.jsx';
 
 import DonorPage from './pages/DonorPage'
 import DonatePage from './pages/DonatePage'
@@ -32,8 +38,13 @@ const App = () => {
 
   return (
     <div>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        <Route path="/login" element={<ChooseLogin/>} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/emergency-contacts" element={<EmergencyContacts />} />
 
         <Route path="/donor" element={authUser ? <DonorPage /> : <Navigate to="/donor-login" />} />
         <Route path="/donate" element={authUser ? <DonatePage /> : <Navigate to="/donor-login" />} />

@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+body {
+  background-color: #032221;
+  color: white;
+}
+
+.navigator {
+    color: white;
+    text-decoration: none;
+}
