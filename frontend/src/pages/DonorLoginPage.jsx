@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import '../LoginPage.css';
 import LoginPage from './LoginPage';
+import { useAuthStore } from '../store/useAuthStore'
 
 const DonorLoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { login, isLoggingIn } = useAuthStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submitted with:', { email, password });
+    login(formData)
     // Add your authentication logic here
   };
 
   return (
-    <LoginPage title="Donor / Volunteer" email={email} password={password}
-     setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit} 
+    <LoginPage title="Donor / Volunteer" formData={formData} setFormData={setFormData} handleSubmit={handleSubmit} 
      link="/donor-signup"
     />
   );

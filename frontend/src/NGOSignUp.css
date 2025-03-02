@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+body {
+    background-color: #000F0B;
+}
+
+
+.signup-body-ngo {
+    padding-top: 300px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .signup-container-ngo {
+    background: #112221;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 20px 70px rgba(138, 233, 143, 0.301);
+    width: 600px;
+  }
+  
+  .signup-form-ngo {
+    display: flex;
+    flex-direction: column;
+    color:#F0F2F0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .signup-form-ngo h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form-ngo label {
+    font-weight: 5em;
+    margin: 5px 0;
+  }
+  
+  .signup-form-ngo input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #094534;
+    border-radius: 5px;
+    background-color:#054938;
+  }
+  
+  .signup-form-ngo button {
+    background: #22C55E;
+    color: #F0F2F0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .signup-form-ngo button:hover {
+    background: #218838;
+  }
+
+  .login-link-ngo {
+    color:#F0F2F0;
+    font-size:smaller;
+    font-family: 'Montserrat', sans-serif;
+   text-align: center;
+  }
+
+    .login-link-ngo a {
+        text-decoration: none;
+        color: #3FEBD0;
+    }
+
+    .login-link-ngo a:hover {
+        text-decoration: underline;
+        color: #30b4a0;
+    }

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore"
+import { useNGOStore } from "../store/useNGOStore"
+import { useGOVStore } from "../store/useGOVStore"
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { authUser, logout } = useAuthStore();
+  const { authNGO, logout: logoutNGO } = useNGOStore();
+  const { authGOV, logout: logoutGOV } = useGOVStore();
   return (
     <header className="w-full bg-black shadow-lg fixed top-0 z-40 backdrop-blur-lg">
       <nav className="w-full flex items-center justify-between py-3 px-6">
@@ -36,11 +40,17 @@ const Header = () => {
 
           {/* Buttons (Only inside dropdown on small screens) */}
           <div className="block xl:hidden mt-4 space-y-2">
-            {!authUser && <Link to="/login">
+            {!(authUser || authNGO || authGOV) && <Link to="/login">
               <button className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
                 Signup / Login
               </button>
             </Link>}
+            {(authUser || authNGO || authGOV) &&
+              <Link>
+              <button onClick={logout} className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                Logout
+              </button>
+              </Link>}
             <button className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
               Report SOS
             </button>
@@ -49,14 +59,16 @@ const Header = () => {
 
         {/* Buttons Section (Visible on larger screens) */}
         <div className="hidden xl:flex items-center space-x-4">
-            {!authUser && <Link to="/login">
+            {!(authUser || authNGO || authGOV) && <Link to="/login">
               <button className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
                 Login / Signup
               </button>
             </Link>}
-            {authUser &&
+            {(authUser || authNGO || authGOV) &&
               <Link>
-              <button onClick={logout} className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+              <button onClick={() => {
+                logout(); logoutNGO(); logoutGOV();
+              }} className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
                 Logout
               </button>
               </Link>}

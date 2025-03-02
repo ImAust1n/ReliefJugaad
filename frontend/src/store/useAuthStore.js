@@ -33,8 +33,6 @@ export const useAuthStore = create((set, get) => ({
             const res = await axiosInstance.post('/auth/signup', data);
             toast.success("Account created successfully");
             set({ authUser: res.data });
-
-            get().connectSocket();
         } catch (error) {
             toast.error(error.response.data.message);
         } finally {
@@ -45,17 +43,14 @@ export const useAuthStore = create((set, get) => ({
     login: async (data) => {
         set({ isLoggingIn: true });
         try {
-            // const res = await axiosInstance.post("/auth/login", data);
-            // set({ authUser: res.data });
+            const res = await axiosInstance.post("/auth/login", data);
+            set({ authUser: res.data });
 
-            console.log(data);
-
-            set({ authUser: data });
+            console.log(res.data);
             toast.success("Logged in successfully");
 
-            get().connectSocket();
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error("Invalid credentials");
         } finally {
             set({ isLoggingIn: false });
         }
@@ -63,13 +58,11 @@ export const useAuthStore = create((set, get) => ({
 
     logout: async () => {
         try {
-            toast.error("Logging out...");
             await axiosInstance.post("/auth/logout");
             set({ authUser: null });
             toast.success("Logged out successfully");
-            get.disconnectSocket();
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error.response);
         }
     },
 }));

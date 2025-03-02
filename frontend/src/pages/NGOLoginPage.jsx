@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import '../LoginPage.css';
 import LoginPage from './LoginPage';
+import { useNGOStore } from '../store/useNGOStore.js'
 
 const NGOLoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { login, isLoggingIn } = useNGOStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submitted with:', { email, password });
-    // Add your authentication logic here
+    login(formData)
   };
 
   return (
-    <LoginPage title="NGO" email={email} password={password} 
-    setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit} 
+    <LoginPage title="NGO" formData={formData} setFormData={setFormData} handleSubmit={handleSubmit} 
     link="/ngo-signup"
     />
   );

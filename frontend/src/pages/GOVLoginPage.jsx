@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import '../LoginPage.css';
 import LoginPage from './LoginPage';
-
+import { useGOVStore } from '../store/useGOVStore.js';
+ 
 const GOVLoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { login, isLoggingIn } = useGOVStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submitted with:', { email, password });
-    // Add your authentication logic here
+    login(formData)
   };
 
   return (
-    <LoginPage title="Government / NDMA" email={email} password={password}
-     setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit}
+    <LoginPage title="Government / NDMA" formData={formData} setFormData={setFormData} handleSubmit={handleSubmit}
      link="/gov-signup"
     />
   );

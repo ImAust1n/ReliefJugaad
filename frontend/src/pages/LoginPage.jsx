@@ -17,8 +17,8 @@ const LoginPage = (props) => {
             <input
               type="email"
               id="email"
-              value={props.email}
-              onChange={(e) => props.setEmail(e.target.value)}
+              value={props.formData.email}
+              onChange={(e) => props.setFormData({ ...props.formData, email: e.target.value })}
               placeholder="Enter your email"
               required
             />
@@ -29,8 +29,8 @@ const LoginPage = (props) => {
             <input
               type="password"
               id="password"
-              value={props.password}
-              onChange={(e) => props.setPassword(e.target.value)}
+              value={props.formData.password}
+              onChange={(e) => props.setFormData({ ...props.formData, password: e.target.value })}
               placeholder="Enter your password"
               required
             />
