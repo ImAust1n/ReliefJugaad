@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import './index.css'
 import Header from './components/Header'
+import Navbar from './components/Navbar.jsx'
 
 import HomePage from './pages/HomePage'
 
@@ -14,6 +15,8 @@ import DonorPage from './pages/DonorPage'
 import DonatePage from './pages/DonatePage'
 import DonorSignUpPage from './pages/DonorSignUpPage'
 import DonorLoginPage from './pages/DonorLoginPage'
+
+import LoginPage from './pages/LoginPage'
 
 import NGOPage from './pages/NGOPage'
 import WarehousePage from './pages/WarehousePage'

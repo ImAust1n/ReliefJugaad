@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../store/useAuthStore"
 
-const Header = () => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { authUser, logout } = useAuthStore();
+
   return (
-    <header className="w-full bg-black shadow-lg fixed top-0 z-40 backdrop-blur-lg">
+    <header className="w-full backdrop-blur-md bg-black shadow-lg fixed top-0 z-50">
       <nav className="w-full flex items-center justify-between py-3 px-6">
         {/* Logo Section */}
         <Link to="/" className="navigator">
@@ -36,11 +35,11 @@ const Header = () => {
 
           {/* Buttons (Only inside dropdown on small screens) */}
           <div className="block xl:hidden mt-4 space-y-2">
-            {!authUser && <Link to="/login">
+            <Link to="/login">
               <button className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
                 Signup / Login
               </button>
-            </Link>}
+            </Link>
             <button className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
               Report SOS
             </button>
@@ -49,26 +48,18 @@ const Header = () => {
 
         {/* Buttons Section (Visible on larger screens) */}
         <div className="hidden xl:flex items-center space-x-4">
-            {!authUser && <Link to="/login">
-              <button className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
-                Login / Signup
-              </button>
-            </Link>}
-            {authUser &&
-              <Link>
-              <button onClick={logout} className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
-                Logout
-              </button>
-              </Link>}
-          <Link>
+          <Link to="/login">
+            <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer">
+              Signup / Login
+            </button>
+          </Link>
           <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg cursor-pointer">
             Report SOS
           </button>
-          </Link>
         </div>
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default Navbar;

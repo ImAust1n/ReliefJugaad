@@ -1,160 +1,128 @@
 /* Import a font like Axiforma or use a fallback */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-:root {
-  /* Primary Colors */
+.login-container {
   --rich-black: #000F0B;
   --dark-green: #112221; 
   --bangladesh-green: #00BC4C;
   --mountain-meadow: #22C55E;
   --caribbean-green: #00E8CF;
   --anti-flash-white: #F0F2F0;
-  
-  /* Secondary Colors */
   --mint: #3FEBD0;
   --forest: #054938;
   --basil: #094534;
-}
-
-.body-login {
-  background-color: var(--rich-black);
+  padding-top: 100px;
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-  min-height: 100vh;
+  /* In case there's a parent background, let's set this just in case */
+  background-color: var(--rich-black);
 }
 
-.login-container {
-  width: 100%;
-  max-width: 450px;
-  padding: 20px;
-}
-
-.login-card {
+.login-container .login-card {
   background-color: var(--dark-green);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  padding: 32px;
+  padding: 70px;
+  width: 60%;
+  max-width: 600px; /* Increased width */
+  min-width: 400px;
+  margin: 0 auto;
 }
 
-.login-header {
+.login-container .login-header {
   text-align: center;
   margin-bottom: 32px;
 }
 
-.login-header h1 {
-  color: var(--caribbean-green);
+.login-container .login-header h1 {
+  color: var(--mint);
   font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 26px; /* Larger font size */
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
 }
 
-.login-header p {
+.login-container .login-header p {
   color: var(--anti-flash-white);
   opacity: 0.8;
+  font-size: 16px; /* Larger font size */
 }
 
-.login-form {
+.login-container .login-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px; /* Increased spacing */
 }
 
-.form-group {
+.login-container .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px; /* Increased spacing */
 }
 
-label {
+.login-container label {
   color: var(--anti-flash-white);
-  font-size: 14px;
+  font-size: 16px; /* Larger font size */
   font-weight: 500;
 }
 
-input {
+.login-container input {
   background-color: var(--forest);
   border: 1px solid var(--basil);
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 16px 18px; /* Larger padding */
   color: var(--anti-flash-white);
   transition: border-color 0.3s;
+  font-size: 16px; /* Larger font size */
 }
 
-input:focus {
+.login-container input:focus {
   outline: none;
   border-color: var(--bangladesh-green);
 }
 
-input::placeholder {
+.login-container input::placeholder {
   color: var(--anti-flash-white);
   opacity: 0.5;
 }
 
-.form-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.remember-me label {
-  font-size: 14px;
-  color: var(--anti-flash-white);
-  opacity: 0.8;
-}
-
-.forgot-password {
-  color: var(--caribbean-green);
-  font-size: 14px;
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-
-.forgot-password:hover {
-  opacity: 0.8;
-}
-
-.login-button {
+.login-container .login-button {
   background-color: var(--mountain-meadow);
   color: var(--rich-black);
   border: none;
   border-radius: 8px;
-  padding: 14px 20px;
+  padding: 16px 20px; /* Larger padding */
   font-weight: 600;
+  font-size: 18px; /* Larger font size */
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-.login-button:hover {
+.login-container .login-button:hover {
   background-color: var(--bangladesh-green);
 }
 
-.signup-link {
-  margin-top: 24px;
+.login-container .signup-link {
+  margin-top: 28px;
   text-align: center;
   color: var(--anti-flash-white);
   opacity: 0.8;
+  font-size: 16px; /* Larger font size */
 }
 
-.signup-link a {
+.login-container .signup-link a {
   color: var(--mint);
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.3s;
 }
 
-.signup-link a:hover {
+.login-container .signup-link a:hover {
   opacity: 0.8;
 }

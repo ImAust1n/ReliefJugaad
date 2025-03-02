@@ -1,34 +1,17 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
 
-function LoginCard() {
+function LoginCard(props) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div className="col d-flex">
+        <div className="card h-100 w-100">
+              <img src={props.imgSrc} className="card-img-top" alt="Card" style={{ height: '400px', width: '100%', objectFit: 'cover' }} />
+              <div className="card-body">
+                <h5 className="card-title text-center" style={{ fontSize: '24px', textDecoration: 'none' }}>Login as {props.title}</h5>
+              </div>
+        </div>
+    </div>
   );
 }
 
 
 export default LoginCard;
-
