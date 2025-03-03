@@ -27,8 +27,8 @@ export const useNGOStore = create((set, get) => ({
     signup: async (data) => {
         set({ isSigningUp:true });
         try {
-            // const res = await axiosInstance.post('/ngos/signup', data);
-            console.log(data);
+            const res = await axiosInstance.post('/ngos/signup', data);
+            console.log(res.data);
             toast.success("Account created successfully");
             set({ authNGO: res.data });
         } catch (error) {

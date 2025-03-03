@@ -16,7 +16,7 @@ const NGOSignUpPage = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -27,29 +27,29 @@ const NGOSignUpPage = () => {
 
   return (
     <div className="signup-container">
-      <form className="signup-form">
+      <form className="signup-form" onSubmit={handleSubmit}>
         <h2>Sign Up as NGO</h2>
 
         <label>Full Name</label>
-        <input type="text" name="fullName" placeholder="Enter your full name" required />
+        <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter your full name" required />
 
         <label>Email</label>
-        <input type="email" name="email" placeholder="Enter your email" required />
+        <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required />
 
         <label>Password</label>
-        <input type="password" name="password" placeholder="Enter your password" required />
+        <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" required />
 
         <label>District</label>
-        <input type="text" name="district" placeholder="Enter your district" required />
+        <input type="text" name="district" value={formData.district} onChange={handleChange} placeholder="Enter your district" required />
 
         <label>State</label>
-        <input type="text" name="state" placeholder="Enter your state" required />
+        <input type="text" name="state" value={formData.state} onChange={handleChange} placeholder="Enter your state" required />
 
         <label>Phone Number</label>
-        <input type="text" name="phoneNumber" placeholder="Enter your phone number" required />
+        <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Enter your phone number" required />
 
         <label>Registration Number</label>
-        <input type="text" name="registrationNumber" placeholder="Enter your registration Number" required />
+        <input type="text" name="registrationNumber" value={formData.registrationNumber} onChange={handleChange} placeholder="Enter your registration Number" required />
 <br /> 
         <button type="submit">Sign Up</button>
 

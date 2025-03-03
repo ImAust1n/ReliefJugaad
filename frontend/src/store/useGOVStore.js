@@ -40,7 +40,7 @@ export const useGOVStore = create((set, get) => ({
     login: async (data) => {
         set({ isLoggingIn: true });
         try {
-            // const res = await axiosInstance.post("/gov/login", data);
+            const res = await axiosInstance.post("/gov/login", data);
             set({ authGOV: res.data });
 
             console.log(data);
