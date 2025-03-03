@@ -1,13 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import "../NGOSignUp.css";
-import { Link } from "react-router-dom";
+import { useNGOStore } from "../store/useNGOStore";
 
 const NGOSignUpPage = () => {
+  const { signup } = useNGOStore();
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    district: "",
+    state: "",
+    phoneNumber: "",
+    registrationNumber: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    signup(formData);
+  };
+
   return (
-    <div className="signup-body-ngo">
-    <div className="signup-container-ngo">
-      <form className="signup-form-ngo">
-        <h2 style={{textAlign: "center", marginBottom: "20px", paddingTop: "30px"}}>NGO Sign Up</h2>
+    <div className="signup-container">
+      <form className="signup-form">
+        <h2>Sign Up as NGO</h2>
 
         <label>Full Name</label>
         <input type="text" name="fullName" placeholder="Enter your full name" required />
@@ -28,16 +49,16 @@ const NGOSignUpPage = () => {
         <input type="text" name="phoneNumber" placeholder="Enter your phone number" required />
 
         <label>Registration Number</label>
-        <input type="text" name="registrationNumber" placeholder="Enter your reg. no" required />
+        <input type="text" name="registrationNumber" placeholder="Enter your registration Number" required />
 <br /> 
         <button type="submit">Sign Up</button>
 
-        <div style={{textAlign: "center", marginTop: "20px", fontSize: "20px"}}>
-          <p className="login-link-ngo">Already Have an account? <Link to="/ngo-login" style={{color: "#3FEBD0"}} >Login</Link>
+        <div>
+          <p className="login-link">Already have an account?   
+            <a href="/login">Login</a>
           </p>
         </div>
       </form>
-    </div>
     </div>
   );
 };

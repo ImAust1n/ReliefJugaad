@@ -57,7 +57,6 @@ export const useGOVStore = create((set, get) => ({
         try {
             await axiosInstance.post("/gov/logout");
             set({ authGOV: null });
-            toast.success("Logged out successfully");
         } catch (error) {
             toast.error(error.response);
         }

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+.about-container {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #000F0B;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+
+  .about-title {
+    padding-top: 80px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #00E8CF;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+
+  .head-style {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 20px 0 10px;
+    color: #00E8CF;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+
+  .about-description {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #F0F2F0;
+    text-align: justify;
+  }
+  
+
+  .about-description p {
+    margin: 10px 0;
+  }
+
+  .about-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .about-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+
+  @media (max-width: 768px) {
+    .about-title {
+      font-size: 2rem;
+    }
+  
+    .head-style {
+      font-size: 1.5rem;
+    }
+  
+    .about-description {
+      font-size: 1.1rem;
+      padding: 0 10px;
+    }
+  
+    .about-image-container {
+      max-width: 90%;
+    }
+  }
+  .about-image {
+    width: 100%;
+    max-width: 600px; 
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  }

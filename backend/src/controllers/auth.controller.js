@@ -6,7 +6,7 @@ export const signup = async (req, res) => {
     const {fullName, email, password, district, state, phoneNumber, isVolunteer} = req.body;
     try {
 
-        if (!fullName || !email || !password || !district || !state || !phoneNumber || !isVolunteer) {
+        if (!fullName || !email || !password || !district || !state || !phoneNumber) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -28,7 +28,7 @@ export const signup = async (req, res) => {
             district,
             state,
             phoneNumber, 
-            isVolunteer,
+            isVolunteer:isVolunteer || false,
         });
 
         if (newUser) {

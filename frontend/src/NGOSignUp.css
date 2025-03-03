@@ -1,81 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+/* Signup Page Styles */
 
 body {
-    background-color: #000F0B;
+  background-color: #000F0B;
 }
 
+@media (max-width: 1200px) {
+  body {
+    background-color: #000F0B;
+  }
+}
 
-.signup-body-ngo {
-    padding-top: 300px;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .signup-container-ngo {
-    background: #112221;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 5px 20px 70px rgba(138, 233, 143, 0.301);
-    width: 600px;
-  }
-  
-  .signup-form-ngo {
-    display: flex;
-    flex-direction: column;
-    color:#F0F2F0;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .signup-form-ngo h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .signup-form-ngo label {
-    font-weight: 5em;
-    margin: 5px 0;
-  }
-  
-  .signup-form-ngo input {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #094534;
-    border-radius: 5px;
-    background-color:#054938;
-  }
-  
-  .signup-form-ngo button {
-    background: #22C55E;
-    color: #F0F2F0;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .signup-form-ngo button:hover {
-    background: #218838;
-  }
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+   /* Rich Black */
+}
 
-  .login-link-ngo {
-    color:#F0F2F0;
-    font-size:smaller;
-    font-family: 'Montserrat', sans-serif;
-   text-align: center;
-  }
+.signup-form {
+  background-color: #112221; /* Dark Green */
+  padding: 2rem 2.5rem;
+  padding-bottom: 8px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 600px;
+}
 
-    .login-link-ngo a {
-        text-decoration: none;
-        color: #3FEBD0;
-    }
+.signup-form h2 {
+  color: #00E8CF; /* Caribbean Green */
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .login-link-ngo a:hover {
-        text-decoration: underline;
-        color: #30b4a0;
-    }
+.signup-form label {
+  display: block;
+  color: #F0F2F0; /* Anti-Flash White */
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #094534; /* Basil */
+  background-color: #054938; /* Forest */
+  color: #F0F2F0; /* Anti-Flash White */
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.signup-form input::placeholder {
+  color: #F0F2F0;
+  opacity: 0.6;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #22C55E; /* Mountain Meadow */
+  border: none;
+  color: #F0F2F0;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.signup-form button:hover {
+  background-color: #00BC4C; /* Bangladesh Green */
+}
+
+/* Login link styling */
+.login-link {
+  margin-top: 15px;
+  text-align: center;
+  color: #F0F2F0;
+}
+
+.login-link a {
+  color: #3FEBD0; /* Mint */
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
