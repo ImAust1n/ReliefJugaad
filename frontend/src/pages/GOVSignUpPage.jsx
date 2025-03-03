@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../govSignUp.css";
 import { Link } from "react-router-dom";
+import { useGOVStore } from "../store/useGOVStore"
 
 const GOVSignUpPage = () => {
+  const { signup } = useGOVStore();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -20,6 +22,7 @@ const GOVSignUpPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+    signup(formData);
   };
 
   return (
