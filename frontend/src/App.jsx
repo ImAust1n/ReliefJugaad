@@ -3,10 +3,11 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import './index.css'
 import Header from './components/Header'
+import Footer from './components/Footer.jsx'
 import Navbar from './components/Navbar.jsx'
 import { Loader } from 'lucide-react'
 
-import HomePage from './pages/HomePage'
+import HomePage from './pages/HomePage.tsx'
 
 import ChooseLogin from './pages/ChooseLogin'
 import AboutUs from './pages/AboutUs.jsx'
@@ -34,6 +35,7 @@ import GOVLoginPage from './pages/GOVLoginPage'
 import { useAuthStore } from './store/useAuthStore.js'
 import { useNGOStore } from './store/useNGOStore.js'
 import { useGOVStore } from './store/useGOVStore.js'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   const { authUser, checkAuth: checkAuthUser, isCheckingAuth: isCheckingAuthUser } = useAuthStore();
@@ -57,6 +59,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
 
@@ -81,6 +84,8 @@ const App = () => {
         <Route path="/gov-signup" element={!authGOV ? <GOVSignUpPage /> : <Navigate to="/gov" />} />
         <Route path="/gov-login" element={!authGOV ? <GOVLoginPage /> : <Navigate to="/gov" />} />
       </Routes>
+
+      <Footer />
 
       <Toaster />
     </div>

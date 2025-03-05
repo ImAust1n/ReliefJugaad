@@ -22,7 +22,7 @@ function HomeSection2() {
     <div className="flex w-full bg-[#112221] pt-4 max-h-[950px]">
       <div className="flex flex-col space-x-4 w-full xl:flex-row" style={{ height: '900px' }}>
         {/* Map or List Container with Tabs */}
-        <div className="w-full xl:w-3/4 bg-[#112221] py-5 px-4 shadow-md rounded-lg border-2 ml-4 pb-4 border-white">
+        <div className="w-full xl:w-3/4 bg-[#112221] py-5 px-4 shadow-md rounded-lg border-2 ml-0 xl:ml-4 pb-4 border-white">
           {/* Tabs */}
           <div className="flex justify-center border-b border-gray-300 mb-4 space-x-4">
             <button
