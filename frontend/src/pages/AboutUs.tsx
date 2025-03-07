@@ -91,6 +91,7 @@ export default function AboutUs() {
           backgroundImage: 'url("https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          textAlign: 'center',
         }}
       >
         <div className="section-overlay" style={{ opacity: 0.9 }}></div>
@@ -111,7 +112,7 @@ export default function AboutUs() {
         viewport={{ once: true }}
         variants={fadeIn}
         transition={{ duration: 0.6 }}
-        className="section-container"
+        className="section-container text-center"
         style={{ backgroundColor: 'var(--color-primary)', opacity: 0.3 }}
       >
         <div className="section-content">
@@ -125,10 +126,12 @@ export default function AboutUs() {
                 viewport={{ once: true }}
                 variants={fadeIn}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card"
+                className="card text-center"
               >
-                {service.icon}
-                <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                <div className="flex justify-center items-center">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-center">{service.title}</h3>
                 <p style={{ color: 'var(--color-gray-300)' }}>{service.description}</p>
               </motion.div>
             ))}
@@ -143,7 +146,7 @@ export default function AboutUs() {
         viewport={{ once: true }}
         variants={fadeIn}
         transition={{ duration: 0.6 }}
-        className="section-container"
+        className="section-container text-center"
       >
         <div className="section-content">
           <h2 className="text-3xl font-bold mb-8">Impact Stories</h2>
@@ -181,7 +184,7 @@ export default function AboutUs() {
                 viewport={{ once: true }}
                 variants={fadeIn}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="partner-tag"
+                className="partner-tag border border-white rounded-full px-4 py-2"
               >
                 {partner}
               </motion.div>

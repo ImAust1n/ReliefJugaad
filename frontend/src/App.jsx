@@ -57,7 +57,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <Header />
       <ScrollToTop />
       <Routes>

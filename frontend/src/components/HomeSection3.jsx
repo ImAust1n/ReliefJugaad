@@ -2,8 +2,8 @@ import React from 'react';
 
 const HomeSection3 = () => {
     return (
-        <section className="bg-[#112221] py-12">
-          <div className="container text-center">
+        <section className="bg-[#112221] py-12 pt-150 xl:pt-20">
+          <div className="text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Why Donate?
             </h2>

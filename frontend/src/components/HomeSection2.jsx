@@ -19,8 +19,8 @@ function HomeSection2() {
   };
 
   return (
-    <div className="flex w-full bg-[#112221] pt-4 max-h-[950px]">
-      <div className="flex flex-col space-x-4 w-full xl:flex-row" style={{ height: '900px' }}>
+    <div className="w-full bg-[#112221] pt-10">
+      <div className="flex flex-col space-x-4 w-full xl:flex-row" style={{ height: '550px' }}>
         {/* Map or List Container with Tabs */}
         <div className="w-full xl:w-3/4 bg-[#112221] py-5 px-4 shadow-md rounded-lg border-2 ml-0 xl:ml-4 pb-4 border-white">
           {/* Tabs */}
@@ -45,14 +45,14 @@ function HomeSection2() {
               id="map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.384199692296!2d77.2167203750056!3d28.63280777351663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce43c2bafb6b9%3A0x632e26f5d0f52b98!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1698759235406!5m2!1sen!2sin"
               width="100%"
-              height="740px"
+              height="450px"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           ) : (
-            <div className="max-h-185 overflow-y-auto space-y-4">
+            <div className="max-h-112.5 overflow-y-auto space-y-4">
               {items.map((item, index) => (
                 <div key={index} className="p-4 bg-white shadow-md rounded-lg border border-gray-200">
                   <h3 className="text-lg font-semibold">{item.name}</h3>
@@ -70,7 +70,7 @@ function HomeSection2() {
         </div>
 
         {/* Weather Report Card */}
-        <div className="w-full xl:w-1/4 text-white shadow-md rounded-lg">
+        <div className="w-full h-[550px] xl:w-1/4 text-white shadow-md rounded-l-2xl">
           <WeatherCard />
         </div>
       </div>

@@ -82,7 +82,7 @@ const WeatherCard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-[950px] rounded-xl shadow-lg overflow-hidden">
+      <div className="w-full h-[600px] rounded-xl shadow-lg overflow-hidden">
         <div className="p-4">
           <div className="flex items-center mb-4">
             <MapPin size={18} className="text-blue-500 mr-2" />
@@ -116,7 +116,7 @@ const WeatherCard: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-[900px] bg-black rounded-xl shadow-lg overflow-hidden">
+    <div className="w-full h-[550px] bg-black rounded-xl shadow-lg overflow-hidden">
       <div className="p-4 flex flex-col h-full">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center">

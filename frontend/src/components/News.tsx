@@ -103,12 +103,12 @@ function News() {
   };
 
   return (
-    <div className="min-h-screen bg-[#112221] p-6">
+    <div className="bg-[#112221] p-6">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
           <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
             <div className="flex items-center">
-              <h1 className="text-3xl font-bold text-gray-800">Live News Alerts</h1>
+              <h1 className="text-3xl font-bold text-white">Live News Alerts</h1>
               <div className="ml-3 px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
                 Real-time
               </div>
@@ -128,7 +128,7 @@ function News() {
                 Refresh
               </button>
               <div className="flex items-center gap-2">
-                <label htmlFor="autoRefresh" className="text-sm text-gray-600">
+                <label htmlFor="autoRefresh" className="text-sm text-gray-200">
                   Auto-refresh
                 </label>
                 <input
