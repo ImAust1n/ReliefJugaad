@@ -4,8 +4,8 @@ import LoginCard from '../components/LoginCard'
 import { Link } from 'react-router-dom'
 const ChooseLogin = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen pt-20 lg:pt-10">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full px-4">
+    <div className="flex justify-center items-center min-h-screen pt-20 xl:pt-10 flex-grow">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 w-full px-4">
         <Link to="/donor-login" className="no-underline">
           <LoginCard title="Donor / Volunteer" imgSrc="https://easydrawingguides.com/wp-content/uploads/2023/05/how-to-draw-an-easy-superman-featured-image-1200-480x480.png" />
         </Link>

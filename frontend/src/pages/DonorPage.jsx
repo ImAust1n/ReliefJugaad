@@ -2,7 +2,7 @@ import React from 'react'
 
 const DonorPage = () => {
   return (
-    <div>
+    <div className="flex-grow">
       
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 
 const GOVPage = () => {
   return (
-    <div>
+    <div className="flex-grow">
       GOVPage
     </div>
   )
