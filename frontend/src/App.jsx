@@ -10,7 +10,7 @@ import { Loader } from 'lucide-react'
 import HomePage from './pages/HomePage.tsx'
 
 import ChooseLogin from './pages/ChooseLogin'
-import AboutUs from './pages/AboutUs.jsx'
+import AboutUs from './pages/AboutUs.tsx'
 import EmergencyContacts from './pages/EmergencyContacts.jsx';
 
 import DonorPage from './pages/DonorPage'

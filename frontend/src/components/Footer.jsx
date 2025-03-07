@@ -2,25 +2,22 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-12 h-68">
-      <div className="container px-4">
-        <div className="flex flex-col md:flex-row md:justify-between items-center">
-          <div className="text-center md:text-left mb-4 md:mb-0">
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-              resQnow
-            </h3>
-            <p className="text-sm mt-2">
-              &copy; {new Date().getFullYear()} resQnow All rights reserved.
-            </p>
+    <footer className="section-container" style={{ borderTop: '1px solid var(--color-primary)'}}>
+        <div className="section-content text-center">
+          <div className="flex justify-center gap-6 mb-6">
+            <a href="#" className="footer-link">Twitter</a>
+            <a href="#" className="footer-link">Facebook</a>
+            <a href="#" className="footer-link">LinkedIn</a>
+            <a href="#" className="footer-link">Instagram</a>
           </div>
-          <div className="flex space-x-4">
-            <a href="#" className="hover:text-purple-400 transition" style={{color: 'white', textDecoration: 'none'}}>Privacy Policy</a>
-            <a href="#" className="hover:text-purple-400 transition" style={{color: 'white', textDecoration: 'none'}}>Terms of Service</a>
-            <a href="#" className="hover:text-purple-400 transition" style={{color: 'white', textDecoration: 'none'}}>Contact Us</a>
-          </div>
+          <p style={{ color: 'var(--color-gray-400)' }} className="text-sm mb-4">
+            Contact us: support@disasterrelief.org | Emergency: +1 (555) 0123-4567
+          </p>
+          <p style={{ color: 'var(--color-gray-500)' }} className="text-xs">
+            © 2025 Disaster Relief Platform. All data is verified through official sources and partner organizations.
+          </p>
         </div>
-      </div>
-    </footer>
+      </footer>
   );
 };
 
