@@ -4,11 +4,30 @@ import { useAuthStore } from "../store/useAuthStore"
 import { useNGOStore } from "../store/useNGOStore"
 import { useGOVStore } from "../store/useGOVStore"
 import { AlignJustify } from "lucide-react"
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { authUser, logout } = useAuthStore();
   const { authNGO, logout: logoutNGO } = useNGOStore();
   const { authGOV, logout: logoutGOV } = useGOVStore();
+
+  const handleSOSClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          console.log("Latitude:", latitude, "Longitude:", longitude);
+          // You can send these coordinates to your server or use them as needed
+        },
+        (error) => {
+          console.error("Error getting location:", error.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
   return (
     <header className="w-full bg-black shadow-lg fixed top-0 z-4609 backdrop-blur-lg">
       <nav className="w-full flex items-center justify-between py-3 px-6">
@@ -47,12 +66,14 @@ const Header = () => {
               </button>
             </Link>}
             {(authUser || authNGO || authGOV) &&
-              <button onClick={logout} className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer">
+              <button onClick={() => {
+                logout(); logoutNGO(); logoutGOV();
+              }} className="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer">
                 Logout
               </button>}
-            <button className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg cursor-pointer">
+            <a href={`tel:100`} onClick={handleSOSClick} className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg cursor-pointer">
               Report SOS
-            </button>
+            </a>
           </div>
         </ul>
 
@@ -71,11 +92,9 @@ const Header = () => {
                 Logout
               </button>
               </Link>}
-          <Link>
-          <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg cursor-pointer">
+          <a href={`tel:100`} onClick={handleSOSClick} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg cursor-pointer">
             Report SOS
-          </button>
-          </Link>
+          </a>
         </div>
       </nav>
     </header>
