@@ -15,10 +15,10 @@ export const useGOVStore = create((set, get) => ({
         try {
             const res = await axiosInstance.get("/gov/check");
             
-            set({ authUser:res.data });
+            set({ authGOV:res.data });
         } catch (error) {
             console.log("Error in checkAuth:", error);
-            set({authUser:null})
+            set({authGOV:null})
         } finally {
             set({isCheckingAuth: false});
         }
