@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomeSection4 = () => {
   return (
-    <section className="donation-section py-12 bg-[#112221] text-white">
+    <section className="donation-section py-12 text-white">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4 text-white">How You Can Donate</h2>
         <p className="mb-8">Your support makes a difference. Choose one of the following ways to contribute:</p>

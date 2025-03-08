@@ -14,7 +14,7 @@ import AboutUs from './pages/AboutUs.tsx'
 import EmergencyContacts from './pages/EmergencyContacts.jsx';
 
 import DonorPage from './pages/DonorPage'
-import DonatePage from './pages/DonatePage'
+import DonatePage from './pages/DonatePage.tsx'
 import DonorSignUpPage from './pages/DonorSignUpPage'
 import DonorLoginPage from './pages/DonorLoginPage'
 
@@ -67,8 +67,8 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} />
 
-        <Route path="/donor" element={authUser ? <DonorPage /> : <Navigate to="/donor-login" />} />
-        <Route path="/donate" element={authUser ? <DonatePage /> : <Navigate to="/donor-login" />} />
+        {/* <Route path="/donor" element={authUser ? <DonorPage /> : <Navigate to="/donor-login" />} /> */}
+        <Route path="/donor" element={authUser ? <DonatePage /> : <Navigate to="/donor-login" />} />
         <Route path="/donor-signup" element={!authUser ? <DonorSignUpPage /> : <Navigate to="/donor" />} />
         <Route path="/donor-login" element={!authUser ? <DonorLoginPage /> : <Navigate to="/donor" />} />
 
