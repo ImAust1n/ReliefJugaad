@@ -16,7 +16,7 @@ function GOVPage() {
     >
       <HeroBanner />
       <Dashboard />
-      <VolunteerCoordination />
+      <VolunteerCoordination link="https://chat.whatsapp.com/EoxkIcLNEbZ9Bk1p47KMzQ" />
       <AidRequest />
       <DisasterReporting />
       <StatisticsDashboard />

@@ -31,22 +31,26 @@ import CampPage from './pages/CampPage'
 import RequirementPage from './pages/RequirementPage'
 import GOVSignUpPage from './pages/GOVSignUpPage'
 import GOVLoginPage from './pages/GOVLoginPage'
-
+import SOSReliefPage from './pages/SOSReliefPage'
+import GOVInventoryPage from './pages/GOVInventoryPage'
 import { useAuthStore } from './store/useAuthStore.js'
 import { useNGOStore } from './store/useNGOStore.js'
 import { useGOVStore } from './store/useGOVStore.js'
+import { useDisasterStore } from './store/useDisasterStore.js'
 import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   const { authUser, checkAuth: checkAuthUser, isCheckingAuth: isCheckingAuthUser } = useAuthStore();
   const { authNGO, checkAuth: checkAuthNGO, isCheckingAuth: isCheckingAuthNGO } = useNGOStore();
   const { authGOV, checkAuth: checkAuthGOV, isCheckingAuth: isCheckingAuthGOV } = useGOVStore();
-
+  const { disasters, getAllDisasters } = useDisasterStore();
+  
   useEffect(() => {
     checkAuthUser();
     checkAuthNGO();
     checkAuthGOV();
-  }, [checkAuthUser, checkAuthNGO, checkAuthGOV]);
+    getAllDisasters();
+  }, [checkAuthUser, checkAuthNGO, checkAuthGOV, getAllDisasters]);
 
   if (isCheckingAuthUser || isCheckingAuthNGO || isCheckingAuthGOV) {
     return (
@@ -75,12 +79,15 @@ const App = () => {
         <Route path="/ngo" element={authNGO ? <NGOPage /> : <Navigate to="/ngo-login" />} />
         <Route path="/ngo-warehouse" element={authNGO ? <WarehousePage /> : <Navigate to="/ngo-login" />} />
         <Route path="/ngo-inventory" element={authNGO ? <InventoryPage /> : <Navigate to="/ngo-login" />} />
+        <Route path="/ngo-camp" element={authNGO ? <Navigate to="/gov-camp" /> : <Navigate to="/ngo-login" />} />
         <Route path="/ngo-signup" element={!authNGO ? <NGOSignUpPage /> : <Navigate to="/ngo" />} />
         <Route path="/ngo-login" element={!authNGO ? <NGOLoginPage /> : <Navigate to="/ngo" />} />
 
         <Route path="/gov" element={authGOV ? <GOVPage /> : <Navigate to="/gov-login" />} />
-        <Route path="/gov-camp" element={authGOV ? <CampPage /> : <Navigate to="/gov-login" />} />
+        <Route path="/gov-camp" element={(authNGO || authGOV) ? <CampPage /> : <Navigate to="/login" />} />
+        <Route path="/gov-sos-relief" element={<SOSReliefPage />}></Route>
         <Route path="/gov-requirement" element={authGOV ? <RequirementPage /> : <Navigate to="/gov-login" />} />
+        <Route path="/gov-inventory" element={authGOV ? <GOVInventoryPage /> : <Navigate to="/gov-login" />} />
         <Route path="/gov-signup" element={!authGOV ? <GOVSignUpPage /> : <Navigate to="/gov" />} />
         <Route path="/gov-login" element={!authGOV ? <GOVLoginPage /> : <Navigate to="/gov" />} />
       </Routes>

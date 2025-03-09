@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { FaExclamationTriangle, FaMapMarkedAlt, FaList } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useDisasterStore } from '../store/useDisasterStore';
+import { statesMap } from '../lib/utils';
+import { useGOVStore } from '../store/useGOVStore';
 
 const DISASTER_TYPES = [
   'Flood',
@@ -13,50 +16,42 @@ const DISASTER_TYPES = [
 ];
 
 const URGENCY_LEVELS = [
-  { value: 'low', label: 'Low', color: 'bg-yellow-500' },
-  { value: 'medium', label: 'Medium', color: 'bg-orange-500' },
-  { value: 'high', label: 'High', color: 'bg-red-500' },
-  { value: 'critical', label: 'Critical', color: 'bg-red-700' }
+  { value: 'low', label: 'Low', color: 'bg-yellow-500', index: 2 },
+  { value: 'medium', label: 'Medium', color: 'bg-orange-500' , index: 3 },
+  { value: 'high', label: 'High', color: 'bg-red-500' , index: 4},
+  { value: 'critical', label: 'Critical', color: 'bg-red-700' , index: 5 }
 ];
 
 export default function DisasterReporting() {
-  const [reports, setReports] = useState([]);
+  const { authGOV } = useGOVStore();
   const [activeTab, setActiveTab] = useState('map'); // Add activeTab state
   const [formData, setFormData] = useState({
     type: '',
-    location: '',
-    urgencyLevel: '',
+    state: '',
+    severity: '',
     description: '',
-    resourcesNeeded: ''
   });
 
+  const { addDisaster, disasters, closeDisaster } = useDisasterStore();
+
     //Dummy data and function for the list
-    const items = [
-    { name: 'Report 1', location: 'Location 1' },
-    { name: 'Report 2', location: 'Location 2' },
-    { name: 'Report 3', location: 'Location 3' }
-  ];
+    const items = disasters;
 
   const handleViewOnMap = (location) => {
-    alert(`Viewing ${location} on the map.`);
     // Implement map navigation logic here
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newReport = {
-      id: Date.now(),
-      ...formData,
-      timestamp: new Date().toISOString(),
-      coordinates: [51.505 + Math.random() * 0.1, -0.09 + Math.random() * 0.1] // Example coordinates
+      ...formData, // Example coordinates
     };
-    setReports([...reports, newReport]);
+    addDisaster(newReport);
     setFormData({
       type: '',
-      location: '',
-      urgencyLevel: '',
+      state: '',
+      severity: '',
       description: '',
-      resourcesNeeded: ''
     });
   };
 
@@ -95,24 +90,17 @@ export default function DisasterReporting() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-200 mb-1">
-                    Location
+                    State
                   </label>
                   <div className="flex gap-2">
                     <input
                       type="text"
-                      value={formData.location}
-                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                      placeholder="Enter location"
+                      value={formData.state}
+                      onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                      placeholder="Enter state"
                       className="flex-1 rounded-lg h-12 border-gray-300 text-gray-300 shadow-sm border-2 focus:border-primary focus:ring-primary"
                       required
                     />
-                    <button
-                      type="button"
-                      className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90"
-                      onClick={() => {/* Auto-detect location */}}
-                    >
-                      <FaMapMarkedAlt />
-                    </button>
                   </div>
                 </div>
 
@@ -123,11 +111,11 @@ export default function DisasterReporting() {
                   <div className="grid grid-cols-4 gap-2">
                     {URGENCY_LEVELS.map(level => (
                       <button
-                        key={level.value}
+                        key={level.index}
                         type="button"
-                        onClick={() => setFormData({ ...formData, urgencyLevel: level.value })}
+                        onClick={() => setFormData({ ...formData, severity: level.index })}
                         className={`p-2 rounded-lg border text-white ${
-                          formData.urgencyLevel === level.value
+                          formData.severity === level.index
                             ? `${level.color}`
                             : 'border-gray-300 hover:border-primary'
                         }`}
@@ -151,22 +139,9 @@ export default function DisasterReporting() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">
-                    Resources Needed
-                  </label>
-                  <textarea
-                    value={formData.resourcesNeeded}
-                    onChange={(e) => setFormData({ ...formData, resourcesNeeded: e.target.value })}
-                    rows={2}
-                    className="w-full rounded-lg border-gray-300 text-gray-300 shadow-sm border-2 focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-
                 <button
                   type="submit"
-                  className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors"
+                  className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors cursor-pointer"
                 >
                   Submit Report
                 </button>
@@ -205,17 +180,38 @@ export default function DisasterReporting() {
             ></iframe>
           ) : (
             <div className="max-h-127.5 overflow-y-auto space-y-4">
+              {console.log(items)}
               {items.map((item, index) => (
-                <div key={index} className="p-4 bg-white shadow-md rounded-lg border border-gray-200">
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-gray-600">{item.location}</p>
-                  <button
-                    className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    onClick={() => handleViewOnMap(item.location)}
+                <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">
+                  <div><h3 className="text-lg text-white font-semibold">{item.type}</h3>
+                  <p className="text-gray-200">State : {item.state}</p>
+                  <p className="text-gray-200">Severity : {item.severity}</p></div>
+                  <div className='flex flex-col gap-2'>
+                    <a
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    href={`https://www.google.com/maps?q=${
+                      statesMap.states.find(state => state.name === item.state)?.latitude
+                    },${
+                      statesMap.states.find(state => state.name === item.state)?.longitude
+                    }&ll=20.5937,78.9629&z=5`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleViewOnMap(item.state)}
                   >
                     View on Map
-                  </button>
-                </div>
+                  </a>
+                  {authGOV && (
+                    <button
+                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      onClick={() => {
+                        closeDisaster(item._id);
+                      }}
+                    >
+                      Close Disaster
+                    </button>
+                  )}
+                  </div>
+            </div>
               ))}
             </div>
           )}

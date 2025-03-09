@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { AlertTriangle, Users } from 'lucide-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroBanner = () => {
   return (
@@ -30,15 +31,18 @@ const HeroBanner = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center gap-2 px-8 py-4 cursor-pointer bg-[#00BC4C] text-white rounded-lg font-semibold hover:bg-[#00BC4C]/80 transition-colors"
-              >
-                <AlertTriangle size={20} />
-                Request Aid
-              </motion.button>
+              <Link to="/gov-requirement">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-2 px-8 py-4 cursor-pointer bg-[#00BC4C] text-white rounded-lg font-semibold hover:bg-[#00BC4C]/80 transition-colors"
+                >
+                  <AlertTriangle size={20} />
+                  Request Aid
+                </motion.button>
+              </Link>
               
+              <Link to="/gov-sos-relief">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -47,6 +51,7 @@ const HeroBanner = () => {
                 <Users size={20} />
                 Track Relief Operations
               </motion.button>
+              </Link>
             </div>
           </motion.div>
         </div>

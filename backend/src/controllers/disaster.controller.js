@@ -1,20 +1,19 @@
 import Disaster from "../models/disaster.model.js"
 
 export const addDisaster = async (req, res) => {
-    const {type, district, state, severity, description} = req.body;
+    const {type, state, severity, description} = req.body;
     try {
 
-        if (!type ||  !district || !state || !severity || !description) {
+        if (!type || !state || !severity || !description) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        const disaster = await Disaster.findOne({ type, district, state });
+        const disaster = await Disaster.findOne({ type, state });
 
         if (disaster) return res.status(400).json({ message: "Disaster already exists" })
 
         const newDisaster = new Disaster({
             type,
-            district,
             state,
             severity, 
             onGoing: true,
@@ -26,7 +25,6 @@ export const addDisaster = async (req, res) => {
             res.status(201).json({
                 _id:newDisaster._id,
                 type: newDisaster.type,
-                district: newDisaster.district,
                 state: newDisaster.state,
                 severity: newDisaster.severity, 
                 onGoing: newDisaster.onGoing,
@@ -68,7 +66,7 @@ export const closeDisaster = async (req, res) => {
 
 export const disasters = async (req, res) => {
     try {
-        const disasters = await Disaster.find({ onGoing: true });
+        const disasters = await Disaster.find({ onGoing: true }).sort({ severity: -1 });
         res.status(200).json(disasters);
     } catch (error) {
         console.log("Error in disasters controller", error);

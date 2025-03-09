@@ -11,7 +11,7 @@ function NGOPage() {
       <div className="animate-fade-in">
         <HeroBanner />
         <ResourceManagement />
-        <VolunteerCoordination />
+        <VolunteerCoordination link="https://chat.whatsapp.com/B5T94r953Ic1YQl67Ojemk" />
         <ImpactDashboard />
         <DisasterReporting />
       </div>

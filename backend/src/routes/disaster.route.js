@@ -7,6 +7,6 @@ router.post("/addDisaster", addDisaster);
 
 router.post("/closeDisaster/:id", closeDisaster);
 
-router.get("/status", disasters);
+router.get("/all", disasters);
 
 export default router;

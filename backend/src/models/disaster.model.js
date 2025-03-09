@@ -6,11 +6,6 @@ const disasterSchema = new mongoose.Schema({
         required: true,
     },
 
-    district: {
-        type: String,
-        required: true,
-    },
-
     state: {
         type: String,
         required: true,
@@ -23,7 +18,6 @@ const disasterSchema = new mongoose.Schema({
 
     onGoing: {
         type: Boolean,
-        required: true,
         default: false,
     },
 
