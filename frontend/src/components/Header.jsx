@@ -4,12 +4,14 @@ import { useAuthStore } from "../store/useAuthStore"
 import { useNGOStore } from "../store/useNGOStore"
 import { useGOVStore } from "../store/useGOVStore"
 import { AlignJustify } from "lucide-react"
+import { useNeedyStore } from "../store/useNeedyStore.js";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { authUser, logout } = useAuthStore();
   const { authNGO, logout: logoutNGO } = useNGOStore();
   const { authGOV, logout: logoutGOV } = useGOVStore();
+  const { addNeedy } = useNeedyStore();
 
   const handleSOSClick = () => {
     if (navigator.geolocation) {
@@ -17,6 +19,11 @@ const Header = () => {
         (position) => {
           const { latitude, longitude } = position.coords;
           console.log("Latitude:", latitude, "Longitude:", longitude);
+          const data = {
+            latitude,
+            longitude,
+          };
+          addNeedy(data);
           // You can send these coordinates to your server or use them as needed
         },
         (error) => {

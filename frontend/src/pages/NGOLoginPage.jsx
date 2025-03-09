@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../LoginPage.css';
 import LoginPage from './LoginPage';
 import { useNGOStore } from '../store/useNGOStore.js'
 

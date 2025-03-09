@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 const Carousel = () => {
   const images = [
     'https://t3.ftcdn.net/jpg/06/20/13/30/360_F_620133022_CMLtda7ZzWk6bTAMfRr3rxVFkeUzNu3O.jpg',
@@ -50,9 +50,11 @@ const Carousel = () => {
         <h1 className="text-white text-2xl md:text-3xl font-bold px-4 text-center">
           Disaster Strikes Fast, We Strike Faster
         </h1>
+        <Link to="/donor-login">
         <button className="mt-4 bg-red-600 text-white cursor-pointer px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300">
           Help Now
         </button>
+        </Link>
       </div>
 
       {/* Navigation Buttons */}

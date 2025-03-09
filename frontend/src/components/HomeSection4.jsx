@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeSection4 = () => {
   return (
@@ -10,7 +11,9 @@ const HomeSection4 = () => {
           <div className="card bg-white text-white border border-gray-200 rounded-lg shadow-md p-6 m-2 w-80% xl:w-1/4">
             <h3 className="text-xl font-semibold mb-2">Online Donation</h3>
             <p className="mb-4">Make a secure online donation using your credit card or PayPal.</p>
+            <Link to="/donor-login">
             <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 inline-block cursor-pointer">Donate Now</button>
+          </Link>
           </div>
           <div className="card bg-white text-white border border-gray-200 rounded-lg shadow-md p-6 m-2 w-80% xl:w-1/4">
             <h3 className="text-xl font-semibold mb-2">Help in Kind</h3>
@@ -20,8 +23,9 @@ const HomeSection4 = () => {
           <div className="card bg-white text-white border border-gray-200 rounded-lg shadow-md p-6 m-2 w-80% xl:w-1/4">
             <h3 className="text-xl font-semibold mb-2">Volunteer</h3>
             <p className="mb-4">Volunteer for providing relief to the needy.</p>
-            <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 inline-block cursor-pointer">Volunteer</button>
-          </div>
+            <Link to="/donor-login"><button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 inline-block cursor-pointer">Volunteer</button>
+            </Link>
+            </div>
         </div>
       </div>
     </section>
