@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useDisasterStore } from '../store/useDisasterStore';
 import { statesMap } from '../lib/utils';
 import { useGOVStore } from '../store/useGOVStore';
+import Map from './Map.jsx';
 
 const DISASTER_TYPES = [
   'Flood',
@@ -78,7 +79,7 @@ export default function DisasterReporting() {
                   <select
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                    className="w-full rounded-lg h-12 border-gray-300 text-gray-300 shadow-sm border-2 border-light-green ring-primary"
+                    className="w-full rounded-lg h-12 border-gray-300 text-gray-300 shadow-sm border-2 border-light-green ring-primary bg-gray-900"
                     required
                   >
                     <option value="">Select type</option>
@@ -168,18 +169,9 @@ export default function DisasterReporting() {
 
           {/* Map or List Content */}
           {activeTab === 'map' ? (
-            <iframe
-              id="map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.384199692296!2d77.2167203750056!3d28.63280777351663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce43c2bafb6b9%3A0x632e26f5d0f52b98!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1698759235406!5m2!1sen!2sin"
-              width="100%"
-              height="510px"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+              <Map height="400px" />
           ) : (
-            <div className="max-h-127.5 overflow-y-auto space-y-4">
+            <div className="h-104 overflow-y-auto space-y-4">
               {console.log(items)}
               {items.map((item, index) => (
                 <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">

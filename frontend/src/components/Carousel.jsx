@@ -43,12 +43,15 @@ const Carousel = () => {
             }`}
           />
         ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000F0B]/90 to-[#054938]/190" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#000F0B]/20 to-[#054938]/190" />
       </div>
 
       {/* Caption and CTA */}
       <div className="absolute inset-0 flex flex-col items-center justify-end rounded-lg pb-8" styles={{ backgroundColor: "rgba(129,254,188,0.5)" }}>
-        <h1 className="text-white text-2xl md:text-3xl font-bold px-4 text-center">
-          Disaster Strikes Fast, We Strike Faster
+        <h1 className="text-white text-4xl md:text-7xl font-bold px-4 text-center">
+          Disaster Strikes <span className='text-[#ed4949]'>Fast</span>, <br />
+          We Strike <span className='text-[#03da59]'>Faster</span>
         </h1>
         <Link to="/donor-login">
         <button className="mt-4 bg-red-600 text-white cursor-pointer px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300">

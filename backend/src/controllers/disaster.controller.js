@@ -8,10 +8,6 @@ export const addDisaster = async (req, res) => {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        const disaster = await Disaster.findOne({ type, state });
-
-        if (disaster) return res.status(400).json({ message: "Disaster already exists" })
-
         const newDisaster = new Disaster({
             type,
             state,

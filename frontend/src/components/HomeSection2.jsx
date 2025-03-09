@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sun, CloudRain, Thermometer, MapPin } from 'lucide-react';
 import WeatherCard from './WeatherCard';
+import { statesMap } from '../lib/utils.js';
+import { useDisasterStore } from '../store/useDisasterStore';
+import { useGOVStore } from '../store/useGOVStore';
+import Map from './Map.jsx';
 
 function HomeSection2() {
   const [activeTab, setActiveTab] = useState('map');
+  const { disasters, closeDisaster, getAllDisasters } = useDisasterStore();
+  const { authGOV } = useGOVStore();
 
-  const items = [
-    { name: 'Item 1', location: 'Location 1' },
-    { name: 'Item 2', location: 'Location 2' },
-    { name: 'Item 3', location: 'Location 3' },
-    { name: 'Item 4', location: 'Location 4' },
-    { name: 'Item 5', location: 'Location 5' },
-  ];
+  const items = disasters;
 
   const handleViewOnMap = (location) => {
     alert(`Viewing ${location} on the map.`);
     // Implement map navigation logic here
   };
+
+  useEffect(() => {
+    getAllDisasters();
+  }, [getAllDisasters, disasters]);
 
   return (
     <div className="w-full bg-[#112221] pt-10">
@@ -41,29 +45,41 @@ function HomeSection2() {
 
           {/* Map or List Content */}
           {activeTab === 'map' ? (
-            <iframe
-              id="map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.384199692296!2d77.2167203750056!3d28.63280777351663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce43c2bafb6b9%3A0x632e26f5d0f52b98!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1698759235406!5m2!1sen!2sin"
-              width="100%"
-              height="450px"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <Map height="450px" />
           ) : (
             <div className="max-h-112.5 overflow-y-auto space-y-4">
+              {console.log(items)}
               {items.map((item, index) => (
-                <div key={index} className="p-4 bg-white shadow-md rounded-lg border border-gray-200">
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-gray-600">{item.location}</p>
-                  <button
-                    className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    onClick={() => handleViewOnMap(item.location)}
+                <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">
+                  <div><h3 className="text-lg text-white font-semibold">{item.type}</h3>
+                  <p className="text-gray-200">State : {item.state}</p>
+                  <p className="text-gray-200">Severity : {item.severity}</p></div>
+                  <div className='flex flex-col gap-2'>
+                    <a
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    href={`https://www.google.com/maps?q=${
+                      statesMap.states.find(state => state.name === item.state)?.latitude
+                    },${
+                      statesMap.states.find(state => state.name === item.state)?.longitude
+                    }&ll=20.5937,78.9629&z=5`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleViewOnMap(item.state)}
                   >
                     View on Map
-                  </button>
-                </div>
+                  </a>
+                  {authGOV && (
+                    <button
+                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      onClick={() => {
+                        closeDisaster(item._id);
+                      }}
+                    >
+                      Close Disaster
+                    </button>
+                  )}
+                  </div>
+            </div>
               ))}
             </div>
           )}

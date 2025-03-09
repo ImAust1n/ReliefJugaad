@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { MapPin, Users, Package, Guitar as Hospital } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import React from 'react';
+import { useDisasterStore } from '../../store/useDisasterStore';
+import React, { useEffect } from 'react';
 
 const data = [
   { name: 'Day 1', rescued: 120, supplies: 200 },
@@ -29,12 +30,18 @@ const StatCard = ({ icon: Icon, title, value }) => (
 );
 
 const Dashboard = () => {
+  const { disasters, getAllDisasters } = useDisasterStore();
+
+  useEffect(() => {
+    getAllDisasters();
+  }, [disasters, getAllDisasters]);
+
   return (
     <div className="container mx-auto px-6 py-12 bg-[#000F0B]">
       <h2 className="text-3xl font-bold text-center mb-8 text-white">Real-time Disaster Response Dashboard</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard icon={MapPin} title="Active Disasters" value="4" />
+        <StatCard icon={MapPin} title="Active Disasters" value={ disasters.length } />
         <StatCard icon={Users} title="People Rescued" value="890" />
         <StatCard icon={Package} title="Supply Units Deployed" value="1,000" />
         <StatCard icon={Hospital} title="Medical Camps" value="12" />
