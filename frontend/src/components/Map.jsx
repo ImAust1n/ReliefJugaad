@@ -8,7 +8,8 @@ import { statesMap } from '../lib/utils';
 // Fix for default marker icons in React Leaflet
 
 export default function Map(props) {
-  const {disasters} = useDisasterStore();
+
+  const {disasters, nasaDisasters} = useDisasterStore();
 
   const locations = disasters.map((item) => ({
       id: item._id,
@@ -16,6 +17,14 @@ export default function Map(props) {
       coordinates: [statesMap.states.find(state => state.name === item.state)?.latitude || 0, statesMap.states.find(state => state.name === item.state)?.longitude || 0],
       type: item.type,
     }));
+
+    const locations2 = nasaDisasters.map((item) => ({
+      id: item.id,
+      state: item.state,
+      coordinates: item.coordinates,
+      type: item.type,
+    }));
+    
   return (
     <MapContainer
       center={[20.5937, 78.9629]}
@@ -31,6 +40,20 @@ export default function Map(props) {
       <ZoomControl position="bottomright" />
       
       {locations.map((location) => (
+        <Marker 
+          key={location.id}
+          position={location.coordinates}
+        >
+          <Popup>
+            <div className="">
+              <h3 className="font-bold text-l">{location.type}</h3>
+              <p className="text-gray-600">{location.state}</p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+
+      {locations2.map((location) => (
         <Marker 
           key={location.id}
           position={location.coordinates}
