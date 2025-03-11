@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage.tsx'
 import ChooseLogin from './pages/ChooseLogin'
 import AboutUs from './pages/AboutUs.tsx'
 import EmergencyContacts from './pages/EmergencyContacts.jsx';
+import DropPointsPage from './pages/DropPointsPage'
 
 import DonorPage from './pages/DonorPage'
 import DonatePage from './pages/DonatePage.tsx'
@@ -20,14 +21,14 @@ import DonorLoginPage from './pages/DonorLoginPage'
 import LoginPage from './pages/LoginPage'
 
 import NGOPage from './pages/NGOPage'
-import WarehousePage from './pages/WarehousePage'
-import InventoryPage from './pages/InventoryPage' 
+import WarehousePage from './pages/WarehousePage.jsx'
+import InventoryPage from './pages/InventoryPage.tsx' 
 import NGOSignUpPage from './pages/NGOSignUpPage'
 import NGOLoginPage from './pages/NGOLoginPage'
 
 import GOVPage from './pages/GOVPage'
 import CampPage from './pages/CampPage'
-import RequirementPage from './pages/RequirementPage'
+import RequirementPage from './pages/RequirementPage.tsx'
 import GOVSignUpPage from './pages/GOVSignUpPage'
 import GOVLoginPage from './pages/GOVLoginPage'
 import SOSReliefPage from './pages/SOSReliefPage.jsx'
@@ -69,6 +70,7 @@ const App = () => {
         <Route path="/login" element={<ChooseLogin/>} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+        <Route path="/drop-points" element={<DropPointsPage />} />
 
         {/* <Route path="/donor" element={authUser ? <DonorPage /> : <Navigate to="/donor-login" />} /> */}
         <Route path="/donor" element={authUser ? <DonatePage /> : <Navigate to="/donor-login" />} />

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CreditCard, Wallet, Building2, Gift } from 'lucide-react';
+import { X, CreditCard, Wallet, Building2, Gift, Link } from 'lucide-react';
 import { clsx } from 'clsx';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface DonationModalProps {
   isOpen: boolean;
@@ -20,11 +21,6 @@ const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
     { id: 'in-kind', label: 'In-Kind', icon: Gift },
     { id: 'corporate', label: 'Corporate', icon: Building2 },
   ] as const;
-
-  const handleInKindRedirect = () => {
-    // This would typically navigate to a new page
-    window.location.href = '/in-kind-donations';
-  };
 
   return (
     <AnimatePresence>
@@ -81,13 +77,13 @@ const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
                     For in-kind donations, we'll need to collect additional information about your items.
                     Please click below to proceed to our detailed in-kind donation form.
                   </p>
+                  <RouterLink to='/drop-points'>
                   <button
-                    onClick={handleInKindRedirect}
                     className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                   >
-                    Continue to In-Kind Donation Form
+                    Continue to In-Kind Donation
                   </button>
-                </div>
+                </RouterLink></div>
               ) : (
                 <div className="space-y-6">
                   {/* Personal Information */}

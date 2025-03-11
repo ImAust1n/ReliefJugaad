@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export default function HeroBanner() {
   return (
     <div className="relative h-[600px] w-full overflow-hidden">
@@ -17,10 +17,10 @@ export default function HeroBanner() {
         <p className="text-xl md:text-2xl text-center mb-8 max-w-2xl">
           Together we can make a difference. Coordinate resources, manage volunteers, and track impact in real-time.
         </p>
-        <button className="bg-[#054938] hover:bg-[#075040] text-white font-semibold py-3 px-8 rounded-lg
+        <Link to="/ngo-inventory"><button className="bg-[#054938] hover:bg-[#075040] text-white font-semibold py-3 px-8 rounded-lg
           transition-all duration-300 transform hover:scale-105 cursor-pointer">
           Manage Resources
-        </button>
+        </button></Link>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const HomeSection4 = () => {
           <div className="card bg-white text-white border border-gray-200 rounded-lg shadow-md p-6 m-2 w-80% xl:w-1/4">
             <h3 className="text-xl font-semibold mb-2">Help in Kind</h3>
             <p className="mb-4">Donate items like clothes, books, and toys.</p>
-            <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 inline-block cursor-pointer">Nearby DropPoint</button>
+            <Link to='drop-points'><button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 inline-block cursor-pointer">Nearby DropPoint</button></Link>
           </div>
           <div className="card bg-white text-white border border-gray-200 rounded-lg shadow-md p-6 m-2 w-80% xl:w-1/4">
             <h3 className="text-xl font-semibold mb-2">Volunteer</h3>

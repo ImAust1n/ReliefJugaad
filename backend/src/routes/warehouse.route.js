@@ -7,6 +7,6 @@ router.post("/addWarehouse", addWarehouse);
 
 router.post("/closeWarehouse/:id", closeWarehouse);
 
-router.get("/warehouses", warehouses);
+router.get("/closeWarehouses", warehouses);
 
 export default router;

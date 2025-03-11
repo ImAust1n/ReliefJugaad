@@ -42,7 +42,7 @@ const Header = () => {
         <Link to="/" className="navigator" onClick={() => setIsOpen(false)}>
             <div className="flex items-center space-x-2 cursor-pointer">
             <img src={"/helicopterhelicopter.png"} alt="logo" className="h-8 w-auto" />
-            <h1 className="text-xl font-bold text-white">resQnow</h1>
+            <h1 className="text-xl font-bold text-white">HeliCooperatorX2</h1>
             </div>
         </Link>
 

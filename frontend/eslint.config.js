@@ -29,5 +29,24 @@ export default [
         { allowConstantExport: true },
       ],
     },
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            black: '#000F0B',
+            green: '#112221',
+            hover: '#00BC4C',
+            button: '#22C55E',
+            heading: '#00E8CF',
+            text: '#F0F2F0',
+          },
+          secondary: {
+            forest: '#054938',
+            basil: '#094534',
+            mint: '#3FEBD0',
+          },
+        },
+      },
+    },
   },
 ]
