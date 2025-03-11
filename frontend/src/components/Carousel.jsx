@@ -54,9 +54,9 @@ const Carousel = () => {
           We Strike <span className='text-[#03da59]'>Faster</span>
         </h1>
         <div className="flex flex-row gap-4">
-        <Link to="/donor-login">
+        <Link to="/gov-camp">
         <button className="mt-4 bg-red-600 text-white cursor-pointer px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300">
-          Help Now
+          Find Safe Shelter
         </button>
         </Link>
         <a href="#chatbot">

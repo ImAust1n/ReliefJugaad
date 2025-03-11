@@ -1,43 +1,109 @@
 import React, { useState } from 'react';
-import { Package } from 'lucide-react';
+import { Package, AlertTriangle, Plus, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-interface RequestItem {
+interface InventoryItem {
   name: string;
-  quantity: string;
+  quantity: number;
+  unit: string;
+  threshold: number;
+  lastUpdated: string;
+  description: string;
+  category: string;
+  icon: React.ReactNode;
+  inputValue: string;
 }
-
-interface RequestForm {
-  itemsNeeded: RequestItem[];
-}
-
-const defaultItems: RequestItem[] = [
-  { name: 'Food', quantity: '0' },
-  { name: 'Water', quantity: '0' },
-  { name: 'Medicine', quantity: '0' },
-  { name: 'Miscellaneous', quantity: '0' }
-];
 
 function RequirementPage() {
-  const [formData, setFormData] = useState<RequestForm>({
-    itemsNeeded: defaultItems,
+  const navigate = useNavigate();
+  const [inventory, setInventory] = useState<Record<string, InventoryItem>>({
+    food: {
+      name: 'Food',
+      quantity: 100,
+      unit: 'kg',
+      threshold: 50,
+      lastUpdated: '2023-11-15',
+      description: 'Emergency food supplies',
+      category: 'Supplies',
+      icon: <Package />,
+      inputValue: '',
+    },
+    water: {
+      name: 'Water',
+      quantity: 200,
+      unit: 'liters',
+      threshold: 100,
+      lastUpdated: '2023-11-15',
+      description: 'Emergency water supplies',
+      category: 'Supplies',
+      icon: <Package />,
+      inputValue: '',
+    },
+    medicine: {
+      name: 'Medicine',
+      quantity: 50,
+      unit: 'packs',
+      threshold: 25,
+      lastUpdated: '2023-11-15',
+      description: 'Emergency medicine supplies',
+      category: 'Supplies',
+      icon: <Package />,
+      inputValue: '',
+    },
+    miscellaneous: {
+      name: 'Miscellaneous',
+      quantity: 10,
+      unit: 'items',
+      threshold: 5,
+      lastUpdated: '2023-11-15',
+      description: 'Emergency miscellaneous supplies',
+      category: 'Supplies',
+      icon: <Package />,
+      inputValue: '',
+    }
   });
 
-  const handleItemChange = (index: number, value: string) => {
-    const newItems = [...formData.itemsNeeded];
-    newItems[index] = { ...newItems[index], quantity: value };
-    setFormData({ ...formData, itemsNeeded: newItems });
+    const handleQuantityChange = (category: string, value: string) => {
+    setInventory(prev => ({
+      ...prev,
+      [category]: { ...prev[category], inputValue: value },
+    }));
   };
+
+  const handleAdd = (category: string) => {
+    const value = inventory[category].inputValue;
+    if (!value || isNaN(Number(value))) {
+      alert('Please enter a valid number.');
+      return;
+    }
+
+    setInventory(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        quantity: prev[category].quantity + Number(value),
+        inputValue: '',
+        lastUpdated: new Date().toLocaleDateString(),
+      },
+    }));
+  };
+
+    const handleClear = (category: string) => {
+        setInventory(prev => ({
+            ...prev,
+            [category]: { ...prev[category], quantity: 0, inputValue: '' }
+        }));
+    };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log('Form submitted:', inventory);
     alert('Request submitted successfully!');
     navigate('/gov-inventory');
   };
 
   return (
-    <div className="min-h-screen bg-primary-black p-8">
+    <div className="min-h-screen bg-primary-black p-8 pt-20">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-primary-heading mb-2">Disaster Relief Inventory</h1>
         <p className="text-primary-text mb-8">Track and manage emergency supplies in real-time</p>
@@ -46,7 +112,7 @@ function RequirementPage() {
           {Object.entries(inventory).map(([category, item]) => (
             <div
               key={category}
-              className="bg-primary-green rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-secondary-mint/20"
+              className="bg-[#122212] rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-secondary-mint/20"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">

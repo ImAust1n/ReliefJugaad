@@ -109,7 +109,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div id="chatbot" className="flex flex-col h-[600px] bg-bangladesh-green rounded-lg overflow-hidden mx-auto p-4 m-8">
+    <div id="chatbot" className="flex flex-col h-[600px] bg-bangladesh-green rounded-lg overflow-hidden mx-auto p-4 m-8" tabIndex={-1}>
       <div className="bg-forest p-4 m-8 flex items-center space-x-2 max-w-[80%]">
         <Bot className="text-caribbean-green" size={24} />
         <h2 className="text-xl font-semibold text-caribbean-green">Chatney Bot</h2>

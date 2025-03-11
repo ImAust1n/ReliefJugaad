@@ -3,10 +3,16 @@ import { motion } from 'framer-motion';
 import { Heart, Users, LineChart, ArrowRight, Clock, Globe, Home, Shield, Droplet, Wind, Sun, Mountain, Wallet, CreditCard, Gift, Building2 } from 'lucide-react';
 import DonationModal from '../components/DonationModal';
 import DisasterCard from '../components/DisasterCard';
-
-function App() {
+import { Link } from 'react-router-dom';
+import Map from '../components/Map';
+import { useDisasterStore } from '../store/useDisasterStore';
+import { statesMap } from '../lib/utils';
+import ImpactDashboard from '../components/ImpactDashboard';
+import Chatbot from '../components/chatbot2/Chatbot';
+function  DonatePage() {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('map'); // Initialize activeTab state
+  const { disasters: items, closeDisaster, getAllDisasters } = useDisasterStore();
 
   const disasters = [
     {
@@ -118,13 +124,6 @@ function App() {
     },
   ];
 
-    //Dummy data for the list view, replace with actual data fetching
-    const items = [
-        { name: 'Disaster 1', location: 'Location 1' },
-        { name: 'Disaster 2', location: 'Location 2' },
-        { name: 'Disaster 3', location: 'Location 3' },
-    ];
-
     const handleViewOnMap = (location: string) => {
         // Replace with actual logic to switch to map view and show the location
         setActiveTab('map');
@@ -166,9 +165,9 @@ function App() {
               >
                 Donate Now
               </button>
-              <button className="bg-white/10 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
+              <Link to="/id-card"><button className="bg-white/10 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
                 Volunteer Now
-              </button>
+              </button></Link>
             </div>
           </motion.div>
         </div>
@@ -311,28 +310,31 @@ function App() {
 
           {/* Map or List Content */}
           {activeTab === 'map' ? (
-            <iframe
-              id="map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.384199692296!2d77.2167203750056!3d28.63280777351663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce43c2bafb6b9%3A0x632e26f5d0f52b98!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1698759235406!5m2!1sen!2sin"
-              width="100%"
-              height="450px"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <Map height="450px" />
           ) : (
-            <div className="max-h-[450px] overflow-y-auto space-y-4">
+            <div className="max-h-112.5 overflow-y-auto space-y-4">
+              {console.log(items)}
               {items.map((item, index) => (
-                <div key={index} className="p-4 bg-white shadow-md rounded-lg border border-gray-200">
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-gray-600">{item.location}</p>
-                  <button
-                    className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    onClick={() => handleViewOnMap(item.location)}
+                <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">
+                  <div><h3 className="text-lg text-white font-semibold">{item.type}</h3>
+                  <p className="text-gray-200">State : {item.state}</p>
+                  <p className="text-gray-200">Severity : {item.severity}</p></div>
+                  <div className='flex flex-col gap-2'>
+                    <a
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    href={`https://www.google.com/maps?q=${
+                      statesMap.states.find(state => state.name === item.state)?.latitude
+                    },${
+                      statesMap.states.find(state => state.name === item.state)?.longitude
+                    }&ll=20.5937,78.9629&z=5`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleViewOnMap(item.state)}
                   >
                     View on Map
-                  </button>
-                </div>
+                  </a>
+                  </div>
+            </div>
               ))}
             </div>
           )}
@@ -413,12 +415,15 @@ function App() {
         </div>
       </section>
 
+      <ImpactDashboard />
+
       <DonationModal
         isOpen={isDonationModalOpen}
         onClose={() => setIsDonationModalOpen(false)}
       />
+      <Chatbot />
     </div>
   );
 }
 
-export default App;
+export default DonatePage;

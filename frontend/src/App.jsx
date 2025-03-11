@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import './index.css'
 import Header from './components/Header'
@@ -17,6 +17,7 @@ import DonorPage from './pages/DonorPage'
 import DonatePage from './pages/DonatePage.tsx'
 import DonorSignUpPage from './pages/DonorSignUpPage'
 import DonorLoginPage from './pages/DonorLoginPage'
+import IDCardPage from './pages/IDCardPage'
 
 import LoginPage from './pages/LoginPage'
 
@@ -44,6 +45,7 @@ const App = () => {
   const { authNGO, checkAuth: checkAuthNGO, isCheckingAuth: isCheckingAuthNGO } = useNGOStore();
   const { authGOV, checkAuth: checkAuthGOV, isCheckingAuth: isCheckingAuthGOV } = useGOVStore();
   const { disasters, getAllDisasters } = useDisasterStore();
+  const location = useLocation();
   
   useEffect(() => {
     checkAuthUser();
@@ -51,6 +53,11 @@ const App = () => {
     checkAuthGOV();
     getAllDisasters();
   }, [checkAuthUser, checkAuthNGO, checkAuthGOV, getAllDisasters]);
+
+  // Scroll to top whenever location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   if (isCheckingAuthUser || isCheckingAuthNGO || isCheckingAuthGOV) {
     return (
@@ -76,16 +83,17 @@ const App = () => {
         <Route path="/donor" element={authUser ? <DonatePage /> : <Navigate to="/donor-login" />} />
         <Route path="/donor-signup" element={!authUser ? <DonorSignUpPage /> : <Navigate to="/donor" />} />
         <Route path="/donor-login" element={!authUser ? <DonorLoginPage /> : <Navigate to="/donor" />} />
-
+        <Route path="/id-card" element={authUser ? <IDCardPage /> : <Navigate to="/donor-login" />} />
+        
         <Route path="/ngo" element={authNGO ? <NGOPage /> : <Navigate to="/ngo-login" />} />
         <Route path="/ngo-warehouse" element={authNGO ? <WarehousePage /> : <Navigate to="/ngo-login" />} />
         <Route path="/ngo-inventory" element={authNGO ? <InventoryPage /> : <Navigate to="/ngo-login" />} />
-        <Route path="/ngo-camp" element={authNGO ? <Navigate to="/gov-camp" /> : <Navigate to="/ngo-login" />} />
+        <Route path="/ngo-camp" element={<CampPage />} />
         <Route path="/ngo-signup" element={!authNGO ? <NGOSignUpPage /> : <Navigate to="/ngo" />} />
         <Route path="/ngo-login" element={!authNGO ? <NGOLoginPage /> : <Navigate to="/ngo" />} />
 
         <Route path="/gov" element={authGOV ? <GOVPage /> : <Navigate to="/gov-login" />} />
-        <Route path="/gov-camp" element={(authNGO || authGOV) ? <CampPage /> : <Navigate to="/login" />} />
+        <Route path="/gov-camp" element={<CampPage />} />
         <Route path="/gov-sos-relief" element={<SOSReliefPage />}></Route>
         <Route path="/gov-requirement" element={authGOV ? <RequirementPage /> : <Navigate to="/gov-login" />} />
         <Route path="/gov-inventory" element={authGOV ? <GOVInventoryPage /> : <Navigate to="/gov-login" />} />

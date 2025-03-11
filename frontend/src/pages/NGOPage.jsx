@@ -12,7 +12,6 @@ function NGOPage() {
         <HeroBanner />
         <ResourceManagement />
         <VolunteerCoordination link="https://chat.whatsapp.com/B5T94r953Ic1YQl67Ojemk" />
-        <ImpactDashboard />
         <DisasterReporting />
       </div>
     </div>

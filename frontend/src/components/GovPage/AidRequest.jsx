@@ -26,10 +26,10 @@ const AidRequest = () => {
           },
           {
             icon: <FirstAid className="text-[#00BC4C]" size={24} />, 
-            title: "Medical Resources",
-            description: "Manage hospital beds, medicine, and medical personnel allocation",
-            buttonText: "Medical Dashboard",
-            link: "/gov-inventory",
+            title: "Rescue People",
+            description: "Rescue people from the disaster area",
+            buttonText: "Rescue People",
+            link: "/gov-sos-relief",
           },
         ].map((item, index) => (
           <motion.div

@@ -156,12 +156,10 @@ function InventoryPage() {
                       {item.quantity} {item.unit}
                     </span>
                   </div>
-                  <div className="mt-2 h-2 bg-primary-green rounded-full overflow-hidden">
+                  <div className="mt-2 h-2 bg-white rounded-full overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-300 ${
-                        item.quantity < item.threshold ? 'bg-primary-heading' : 'bg-primary-button'
-                      }`}
-                      style={{ width: `${Math.min((item.quantity / item.threshold) * 100, 100)}%` }}
+                      className={`h-full rounded-full transition-all duration-300`}
+                      style={{ width: `${Math.min((Number(item.quantity) / Number(item.threshold)) * 100, 100)}%`, backgroundColor: 'green' }}
                     />
                   </div>
                   <div className="mt-2 text-xs text-primary-text/60 text-right">
