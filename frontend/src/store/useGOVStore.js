@@ -10,7 +10,51 @@ export const useGOVStore = create((set, get) => ({
     isLoggingIn: false,
     isCheckingAuth: true,
     socket: null,
+    userEmails: ["seemeadit21824@gmail.com", "akashkrgupta2904@gmail.com", "ynithya2@gmail.com"],
 
+    sendEmail: async (email) => {
+        try {
+            const { userEmails } = get();
+            
+            if (email) {
+                // Send to a specific email if provided
+                const res = await axiosInstance.post(`${BASE_URL}/api/email/send`, { 
+                    recipient_email: email,
+                    subject: "Emergency Alert: Disaster Warning",
+                    message: "This is an important alert regarding an ongoing disaster situation. Please take necessary precautions and follow official guidelines."
+                });
+                console.log(res.data);
+                toast.success("Emergency alert email sent successfully");
+            } else {
+                // Send to all emails in the userEmails list
+                let successCount = 0;
+                for (const userEmail of userEmails) {
+                    try {
+                        await axiosInstance.post(`${BASE_URL}/api/email/send`, { 
+                            recipient_email: userEmail,
+                            subject: "Emergency Alert: Disaster Warning",
+                            message: "This is an important alert regarding an ongoing disaster situation. Please take necessary precautions and follow official guidelines."
+                        });
+                        successCount++;
+                    } catch (err) {
+                        console.log(`Failed to send email to ${userEmail}:`, err);
+                    }
+                }
+                
+                if (successCount === userEmails.length) {
+                    toast.success(`Emergency alerts sent to all ${successCount} recipients`);
+                } else if (successCount > 0) {
+                    toast.success(`Emergency alerts sent to ${successCount} out of ${userEmails.length} recipients`);
+                } else {
+                    toast.error("Failed to send any emergency alert emails");
+                }
+            }
+        } catch (error) {
+            console.log("Error in sendEmail:", error);
+            toast.error("Failed to send emergency alert emails");
+        }
+    },
+    
     checkAuth: async () => {
         try {
             const res = await axiosInstance.get("/gov/check");

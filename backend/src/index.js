@@ -12,6 +12,7 @@ import campRoutes from "./routes/camp.route.js"
 import inventoryRoutes from "./routes/inventory.route.js"
 import requirementRoutes from "./routes/requirement.route.js"
 import needyRoutes from "./routes/needy.route.js"
+import emailRoutes from "./routes/email.route.js"
 import { connectDB } from "./lib/db.js"
 
 dotenv.config()
@@ -42,6 +43,7 @@ app.use('/api/inventory', inventoryRoutes);
 app.use('/api/camp', campRoutes);
 app.use('/api/requirements', requirementRoutes);
 app.use('/api/needy', needyRoutes);
+app.use('/api/email', emailRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

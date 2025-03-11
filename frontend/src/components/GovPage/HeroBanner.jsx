@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
-import { AlertTriangle, Users } from 'lucide-react';
+import { AlertTriangle, Users, AlertCircle } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useGOVStore } from '../../store/useGOVStore';
 
 const HeroBanner = () => {
+  const { sendEmail } = useGOVStore();
   return (
     <div className="relative h-[600px] w-full overflow-hidden">
       <div 
@@ -52,6 +54,15 @@ const HeroBanner = () => {
                 Track Relief Operations
               </motion.button>
               </Link>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => sendEmail()}
+                className="flex items-center justify-center gap-2 px-8 py-4 cursor-pointer bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
+              >
+                <AlertCircle size={20} />
+                Alert Users
+              </motion.button>
             </div>
           </motion.div>
         </div>
