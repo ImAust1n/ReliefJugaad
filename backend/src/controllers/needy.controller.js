@@ -37,3 +37,13 @@ export const getAllNeedy = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+export const closeRequest = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const closedNeedy = await Needy.findByIdAndDelete(id);
+        res.status(200).json({ message: "Request closed successfully", closedNeedy });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}

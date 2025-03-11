@@ -1,21 +1,19 @@
 import Inventory from '../models/inventory.model.js';
 
 export const addItem = async (req, res) => {
-    const { category, quantity } = req.body;
-    const { warehouseId } = req.params;
+    const { foodQuantity, waterQuantity, medicineQuantity, otherQuantity } = req.body;
+    const { ngoId } = req.params;
     try {
-        if (!category || !quantity || !warehouseId) {
+        if (!foodQuantity || !waterQuantity || !medicineQuantity || !otherQuantity || !ngoId) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        const item = await Inventory.findOne({ warehouseId, category });
-
-        if (item) return res.status(400).json({ message: "Item already exists" });
-
         const newItem = new Inventory({
-            warehouseId,
-            category,
-            quantity,
+            ngoId,
+            foodQuantity,
+            waterQuantity,
+            medicineQuantity,
+            otherQuantity,
         });
 
         const savedItem = await newItem.save();
@@ -41,17 +39,18 @@ export const deleteItem = async (req, res) => {
         }
         res.status(200).json({ message: "Item deleted successfully" });
     } catch (error) {
+        console.log("Error in deleteItem: ", error);
         res.status(500).json({ message: error.message });
     }
 };
 
 export const updateItem = async (req, res) => {
     const { id } = req.params;
-    const { number } = req.body;
+    const { foodQuantity, waterQuantity, medicineQuantity, otherQuantity } = req.body;
 
     try {
-        if (!id || !number) {
-            return res.status(400).json({ message: "All fields are required" });
+        if (!id) {
+            return res.status(400).json({ message: "ID is required" });
         }
 
         const inventory = await Inventory.findById(id);
@@ -59,12 +58,24 @@ export const updateItem = async (req, res) => {
             return res.status(404).json({ message: "Inventory not found" });
         }
 
-        inventory.quantity += Number(number);
+        if (foodQuantity) {
+            inventory.foodQuantity += Number(foodQuantity);
+        }
+        if (waterQuantity) {
+            inventory.waterQuantity += Number(waterQuantity);
+        }
+        if (medicineQuantity) {
+            inventory.medicineQuantity += Number(medicineQuantity);
+        }
+        if (otherQuantity) {
+            inventory.otherQuantity += Number(otherQuantity);
+        }
+
         await inventory.save();
 
-        res.status(200).json({ message: "Item updated successfully", quantity: inventory.quantity });
+        res.status(200).json({ message: "Item updated successfully", inventory });
     } catch (error) {
-        console.log("Error in addItem controller", error);
+        console.log("Error in updateItem controller", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 };

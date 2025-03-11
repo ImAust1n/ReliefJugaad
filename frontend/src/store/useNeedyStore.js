@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 const BASE_URL = "http://localhost:5001";
 
 export const useNeedyStore = create((set, get) => ({
+    needy: [],
+
     addNeedy: async (data) => {
         try {
             const res = await axiosInstance.post("/needy/add", data);
@@ -17,10 +19,22 @@ export const useNeedyStore = create((set, get) => ({
     getAllNeedy: async () => {
         try {
             const res = await axiosInstance.get("/needy/all");
-            return res.data;
+            set({ needy: res.data });
+            console.log("Needy fetched successfully", res.data);
         } catch (error) {
             console.log("Error in getAllNeedy: ", error);
-            return [];
+            set({ needy: [] });
+        }
+    },
+
+    closeRequest: async (id) => {
+        try {
+            const res = await axiosInstance.post(`/needy/close/${id}`);
+            toast.success("Request closed successfully");
+            console.log("Request closed successfully", res.data);
+            get().getAllNeedy();
+        } catch (error) {
+            toast.error(error.response);
         }
     }
 }));

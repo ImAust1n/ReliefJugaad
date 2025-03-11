@@ -7,15 +7,25 @@ const inventorySchema = new mongoose.Schema({
         required: true,
     },
     
-    category: {
-        type: String,
-        required: true,
-    },
-
-    quantity: {
+    foodQuantity: {
         type: Number,
         required: true,
     },
+
+    waterQuantity: {
+        type: Number,
+        required: true,
+    },
+
+    medicineQuantity: {
+        type: Number,
+        required: true,
+    },
+
+    otherQuantity: {
+        type: Number,
+        required: true,
+    }
 
 }, { timestamps: true });
 
