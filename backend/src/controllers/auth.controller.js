@@ -3,7 +3,7 @@ import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 
 export const signup = async (req, res) => {
-    const {fullName, email, password, district, state, phoneNumber, isVolunteer} = req.body;
+    const {fullName, email, password, district, state, phoneNumber, isVolunteer, type} = req.body;
     try {
 
         if (!fullName || !email || !password || !district || !state || !phoneNumber) {
@@ -29,6 +29,7 @@ export const signup = async (req, res) => {
             state,
             phoneNumber, 
             isVolunteer:isVolunteer || false,
+            type: type || 'none',
         });
 
         if (newUser) {
@@ -44,6 +45,7 @@ export const signup = async (req, res) => {
                 state: newUser.state,
                 phoneNumber: newUser.phoneNumber, 
                 isVolunteer: newUser.isVolunteer,
+                type: newUser.type,
             });
         } else {
             res.status(400).json({ message:"Invalid user data" });

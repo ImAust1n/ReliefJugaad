@@ -294,7 +294,7 @@ type ConversationState =
 
 const INITIAL_MESSAGES: Message[] = [
   {
-    text: "Hello! I'm your Disaster Response Assistant. I can help create a personalized evacuation plan for your household. What type of disaster are you most concerned about (hurricane, flood, wildfire, earthquake, tornado, cyclone)?",
+    text: "Hello! I'm SaamBot, your Disaster Response Assistant. I can help create a personalized evacuation plan for your household. What type of disaster are you most concerned about (hurricane, flood, wildfire, earthquake, tornado, cyclone)? Spill some Sambar",
     isBot: true,
     timestamp: new Date(),
   },
@@ -631,7 +631,7 @@ This plan has been customized based on your information. Stay safe and follow of
       <div className="bg-gray-800 p-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Bot className="text-green-500" size={24} />
-          <h2 className="text-xl font-semibold text-green-500">Disaster Response Assistant</h2>
+          <h2 className="text-xl font-semibold text-green-500">SaamBot</h2>
         </div>
         <div className="flex items-center space-x-2 text-gray-300">
           {getStateIcon()}

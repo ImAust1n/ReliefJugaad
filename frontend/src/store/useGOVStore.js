@@ -10,7 +10,19 @@ export const useGOVStore = create((set, get) => ({
     isLoggingIn: false,
     isCheckingAuth: true,
     socket: null,
+    users: 0,
     userEmails: ["seemeadit21824@gmail.com", "akashkrgupta2904@gmail.com", "ynithya2@gmail.com"],
+
+    setUsers: async () => {
+        try {
+            const res = await axiosInstance.get(`/users`);
+            set({ users: res.data.length });
+            set((state) => ({ userEmails: [...state.userEmails, ...res.data.map((user) => user.email)] }));
+            console.log(res.data);
+        } catch (error) {
+            console.log("Error in setUsers:", error);
+        }
+    },
 
     sendEmail: async (email) => {
         try {

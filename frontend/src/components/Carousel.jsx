@@ -64,6 +64,11 @@ const Carousel = () => {
           Chatney
         </button>
         </a>
+        <Link to="/survival-guide">
+          <button className="mt-4 bg-green-800 text-white cursor-pointer px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition duration-300">
+            Survival Guide
+          </button>
+        </Link>
         </div>
       </div>
 

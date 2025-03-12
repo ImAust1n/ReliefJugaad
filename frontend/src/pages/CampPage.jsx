@@ -46,6 +46,17 @@ function CampPage() {
             <MapPin className="text-[#00E8CF]" size={32} />
             <h1 className="text-[#00E8CF] text-2xl font-bold">Relief Camp Locator</h1>
           </div>
+          <button
+            onClick={() => {
+              toast.success("Offline map downloaded successfully");
+              // In a real app, this would trigger the actual map download
+              console.log("Downloading offline map...");
+            }}
+            className="bg-[#054938] hover:bg-[#076050] text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors mr-4"
+          >
+            <MapPin size={20} />
+            Download Offline Map
+          </button>
           {(authNGO || authGOV) && <button
             onClick={addNewCamp}
             className="bg-[#00BC4C] hover:bg-[#22C55E] text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"

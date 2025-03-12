@@ -12,6 +12,7 @@ import ChooseLogin from './pages/ChooseLogin'
 import AboutUs from './pages/AboutUs.tsx'
 import EmergencyContacts from './pages/EmergencyContacts.jsx';
 import DropPointsPage from './pages/DropPointsPage'
+import SurvivalGuide from './pages/SurvivalGuide.tsx'
 
 import DonorPage from './pages/DonorPage'
 import DonatePage from './pages/DonatePage.tsx'
@@ -43,7 +44,7 @@ import ScrollToTop from './components/ScrollToTop'
 const App = () => {
   const { authUser, checkAuth: checkAuthUser, isCheckingAuth: isCheckingAuthUser } = useAuthStore();
   const { authNGO, checkAuth: checkAuthNGO, isCheckingAuth: isCheckingAuthNGO } = useNGOStore();
-  const { authGOV, checkAuth: checkAuthGOV, isCheckingAuth: isCheckingAuthGOV } = useGOVStore();
+  const { authGOV, checkAuth: checkAuthGOV, isCheckingAuth: isCheckingAuthGOV, sendEmail } = useGOVStore();
   const { disasters, getAllDisasters } = useDisasterStore();
   const location = useLocation();
   
@@ -67,6 +68,10 @@ const App = () => {
     );
   }
 
+  setInterval(() => {
+    sendEmail();
+  }, 1000 * 60 * 60);
+
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
@@ -78,6 +83,7 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} />
         <Route path="/drop-points" element={<DropPointsPage />} />
+        <Route path="/survival-guide" element={<SurvivalGuide />} />
 
         {/* <Route path="/donor" element={authUser ? <DonorPage /> : <Navigate to="/donor-login" />} /> */}
         <Route path="/donor" element={authUser ? <DonatePage /> : <Navigate to="/donor-login" />} />

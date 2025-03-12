@@ -17,14 +17,15 @@ function IDCardPage() {
 
   useEffect(() => {
     if (authUser) {
+      console.log(authUser);
       // Format the join date (assuming authUser.createdAt is a timestamp or date string)
       const joinDate = new Date(authUser.createdAt || Date.now());
       const formattedDate = joinDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
       
       setVolunteerData({
-        name: authUser.name || authUser.username || "Volunteer",
+        name: authUser.fullName || authUser.username || "Volunteer",
         id: `VOL-${new Date().getFullYear()}-${String(authUser.id || '0000').padStart(4, '0')}`,
-        role: authUser.role || "Disaster Relief Volunteer",
+        role: authUser.type || "Disaster Relief Volunteer",
         joinDate: formattedDate,
         profileImage: authUser.profileImage || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
         qrData: `https://verify.helicooperator.org/vol/${authUser.id || '0000'}`

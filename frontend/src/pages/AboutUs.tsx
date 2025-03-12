@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaHandHoldingHeart, FaBell, FaHandsHelping, FaChartLine } from 'react-icons/fa';
 import React from 'react';
+import { Link } from 'react-router-dom';
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 }
@@ -205,15 +206,21 @@ export default function AboutUs() {
         <div className="section-content">
           <h2 className="text-3xl font-bold mb-8">Join Our Mission</h2>
           <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/donor">
             <button className="button-primary">
               Donate Now
             </button>
+            </Link>
+            <Link to="/donor">
             <button className="button-secondary">
               Volunteer
             </button>
+            </Link>
+            <Link to="/donor">
             <button className="button-secondary">
               Sign Up for Alerts
             </button>
+            </Link>
           </div>
         </div>
       </motion.section>

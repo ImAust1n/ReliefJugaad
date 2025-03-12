@@ -38,6 +38,11 @@ const userSchema = new mongoose.Schema({
         default: false,
     },
 
+    type: {
+        type: String,
+        default: 'none',
+    },
+
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);

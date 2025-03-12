@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
+import { useGOVStore } from "../store/useGOVStore";
 
 const DonorSignUpPage = () => {
   const { signup } = useAuthStore();
@@ -11,7 +12,9 @@ const DonorSignUpPage = () => {
     state: "",
     phoneNumber: "",
     isVolunteer: false,
+    type: "",
   });
+  const { userEmails, setUsers, users } = useGOVStore();
 
   const handleChange = (e) => {
     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -20,8 +23,16 @@ const DonorSignUpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setUsers();
     console.log("Form submitted:", formData);
+    if (formData.isVolunteer === false) formData.type = "none"; 
+    else if (users % 3 === 0) formData.type = "Rescue";
+    else if (users % 3 === 1) formData.type = "Medical";
+    else formData.type = "Transportation";
     signup(formData);
+    setUsers();
+    console.log(userEmails);
+    console.log(users);
   };
 
   return (
