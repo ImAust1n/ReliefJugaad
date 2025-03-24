@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, LineChart, ArrowRight, Clock, Globe, Home, Shield, Droplet, Wind, Sun, Mountain, Wallet, CreditCard, Gift, Building2 } from 'lucide-react';
 import DonationModal from '../components/DonationModal';
@@ -8,7 +8,8 @@ import Map from '../components/Map';
 import { useDisasterStore } from '../store/useDisasterStore';
 import { statesMap } from '../lib/utils';
 import ImpactDashboard from '../components/ImpactDashboard';
-import Chatbot from '../components/chatbot2/Chatbot';
+import ChatBotApp from '../components/ChatBotApp';
+
 function  DonatePage() {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('map'); // Initialize activeTab state
@@ -136,6 +137,7 @@ function  DonatePage() {
     <div className="min-h-screen bg-gradient-to-b from-[#112221] to-[#000F0B] text-white">
       {/* Hero Section */}
       <section
+        id="hero"
         className="relative h-screen flex items-center"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80)',
@@ -168,6 +170,10 @@ function  DonatePage() {
               <Link to="/id-card"><button className="bg-white/10 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
                 Volunteer Now
               </button></Link>
+
+              <a href="#saambot"><button className="bg-white/10 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
+                SaamBot
+              </button></a>
             </div>
           </motion.div>
         </div>
@@ -421,7 +427,7 @@ function  DonatePage() {
         isOpen={isDonationModalOpen}
         onClose={() => setIsDonationModalOpen(false)}
       />
-      <Chatbot />
+      <ChatBotApp />
     </div>
   );
 }

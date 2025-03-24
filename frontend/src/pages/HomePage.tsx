@@ -16,7 +16,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className='pt-20 xl:pt-0'>
+    <div className=''>
       <Carousel />
       <HomeSection2 />
       <HomeSection3 />

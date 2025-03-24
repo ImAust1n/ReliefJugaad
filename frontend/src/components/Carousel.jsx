@@ -49,9 +49,9 @@ const Carousel = () => {
 
       {/* Caption and CTA */}
       <div className="absolute inset-0 flex flex-col items-center justify-end rounded-lg pb-8" styles={{ backgroundColor: "rgba(129,254,188,0.5)" }}>
-        <h1 className="text-white text-4xl md:text-7xl font-bold px-4 text-center">
-          Disaster Strikes <span className='text-[#ed4949]'>Fast</span>, <br />
-          We Strike <span className='text-[#03da59]'>Faster</span>
+        <h1 className="text-gray-300 text-4xl md:text-7xl font-bold px-4 text-center font-serif">
+          Disaster Strikes <span className='text-[#d44545]'>Fast</span> <br />
+          We Strike <span className='text-[#26c867]'>Faster</span>
         </h1>
         <div className="flex flex-row gap-4">
         <Link to="/gov-camp">

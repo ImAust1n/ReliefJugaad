@@ -83,6 +83,7 @@ export const login = async (req, res) => {
             state: user.state,
             phoneNumber: user.phoneNumber, 
             isVolunteer: user.isVolunteer,
+            type: user.type,
         });
 
     } catch (error) {

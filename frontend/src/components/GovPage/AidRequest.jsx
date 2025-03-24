@@ -18,11 +18,11 @@ const AidRequest = () => {
             link: "/gov-requirement",
           },
           {
-            icon: <Truck className="text-[#00BC4C]" size={24} />, 
-            title: "Supply Chain Tracking",
-            description: "Monitor the movement of supplies from donors to affected areas",
-            buttonText: "Track Supplies",
-            link: "/gov-inventory",
+            icon: <Package className="text-[#00BC4C]" size={24} />, 
+            title: "Disaster Impact Calculator",
+            description: "Calculate the impact of the disaster on the affected area",
+            buttonText: "Calculate Impact",
+            link: "/gov-predictor",
           },
           {
             icon: <FirstAid className="text-[#00BC4C]" size={24} />, 

@@ -4,10 +4,10 @@ const Footer = () => {
   return (
     <footer className="border-t border-primary py-6 text-center">
       <div className="flex justify-center gap-6 mb-6">
-        <a href="#" className="footer-link">Twitter</a>
-        <a href="#" className="footer-link">Facebook</a>
-        <a href="#" className="footer-link">LinkedIn</a>
-        <a href="#" className="footer-link">Instagram</a>
+        <a href="https://x.com/ndmaindia" className="footer-link">Twitter</a>
+        <a href="https://www.facebook.com/NDMA.in/" className="footer-link">Facebook</a>
+        <a href="https://www.linkedin.com/company/national-disaster-management-authority-ndma-india/?originalSubdomain=in" className="footer-link">LinkedIn</a>
+        <a href="https://www.instagram.com/ndmaindia/?hl=en" className="footer-link">Instagram</a>
       </div>
       <p className="text-gray-400 text-sm mb-4">
         Contact us: support@resqnow.org | Emergency: +91 11-26701700

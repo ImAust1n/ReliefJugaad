@@ -42,7 +42,7 @@ function SOSReliefPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#000F0B] text-[#F0F2F0]">
+    <div className="min-h-screen bg-[#000F0B] pt-20 text-[#F0F2F0]">
       <header className="bg-[#112221] border-b-2 border-red-600 p-6">
         <div className="container mx-auto">
           <div className="flex items-center gap-2">

@@ -25,7 +25,7 @@ function IDCardPage() {
       setVolunteerData({
         name: authUser.fullName || authUser.username || "Volunteer",
         id: `VOL-${new Date().getFullYear()}-${String(authUser.id || '0000').padStart(4, '0')}`,
-        role: authUser.type || "Disaster Relief Volunteer",
+        role: `${authUser.type} Volunteer` || `Disaster Relief Volunteer (${authUser.type})`,
         joinDate: formattedDate,
         profileImage: authUser.profileImage || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
         qrData: `https://verify.helicooperator.org/vol/${authUser.id || '0000'}`

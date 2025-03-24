@@ -627,7 +627,7 @@ This plan has been customized based on your information. Stay safe and follow of
   };
 
   return (
-    <div className="flex flex-col h-[600px] p-20 bg-[#112221] rounded-lg overflow-hidden">
+    <div id="saambot" className="flex  flex-col h-[600px] p-20 bg-[#112221] rounded-lg overflow-hidden">
       <div className="bg-gray-800 p-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Bot className="text-green-500" size={24} />

@@ -40,7 +40,7 @@ const Header = () => {
       <nav className="w-full flex items-center justify-between py-3 px-6">
         {/* Logo Section */}
         <Link to="/" className="navigator" onClick={() => setIsOpen(false)}>
-            <div className="flex items-center space-x-2 cursor-pointer">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => new Audio('/heli.mp3').play()}>
             <img src={"/helicopterhelicopter.png"} alt="logo" className="h-8 w-auto" />
             <h1 className="text-xl font-bold text-white">HeliCooperatorX2</h1>
             </div>
