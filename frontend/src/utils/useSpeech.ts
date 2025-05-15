@@ -14,8 +14,10 @@ export function useSpeechRecognition(onResult: (result: string) => void) {
   const [interimTranscript, setInterimTranscript] = useState('');
 
   const startListening = () => {
+    console.log('[SpeechRecognition] startListening called');
     if (!SpeechRecognition) {
       alert('Speech Recognition is not supported in this browser.');
+      console.error('[SpeechRecognition] Not supported in this browser.');
       return;
     }
     const recognition = new SpeechRecognition();
@@ -24,6 +26,7 @@ export function useSpeechRecognition(onResult: (result: string) => void) {
     recognition.continuous = true; // allow longer speech
     recognition.maxAlternatives = 1;
     recognition.onresult = (event: any) => {
+      console.log('[SpeechRecognition] onresult', event);
       let finalTranscript = '';
       let interim = '';
       for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -41,20 +44,25 @@ export function useSpeechRecognition(onResult: (result: string) => void) {
       }
     };
     recognition.onend = () => {
+      console.log('[SpeechRecognition] onend');
       setListening(false);
       setInterimTranscript('');
     };
     recognition.onerror = (e: any) => {
+      console.error('[SpeechRecognition] onerror', e);
       setListening(false);
       setInterimTranscript('');
       alert('Speech recognition error: ' + (e.error || 'Unknown error'));
     };
     recognitionRef.current = recognition;
+    console.log('[SpeechRecognition] recognition started');
     setListening(true);
     recognition.start();
+    console.log('[SpeechRecognition] recognition.start() called');
   };
 
   const stopListening = () => {
+    console.log('[SpeechRecognition] stopListening called');
     recognitionRef.current?.stop();
     setListening(false);
     setInterimTranscript('');
@@ -64,7 +72,9 @@ export function useSpeechRecognition(onResult: (result: string) => void) {
 }
 
 export function useSpeechSynthesis() {
+  // Log when TTS is called
   const speak = (text: string) => {
+    console.log('[SpeechSynthesis] speak called with:', text);
     if (!('speechSynthesis' in window)) {
       alert('Speech Synthesis is not supported in this browser.');
       return;
