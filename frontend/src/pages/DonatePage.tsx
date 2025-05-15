@@ -427,7 +427,6 @@ function  DonatePage() {
         isOpen={isDonationModalOpen}
         onClose={() => setIsDonationModalOpen(false)}
       />
-      <ChatBotApp />
     </div>
   );
 }

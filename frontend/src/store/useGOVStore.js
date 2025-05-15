@@ -30,7 +30,7 @@ export const useGOVStore = create((set, get) => ({
             
             if (email) {
                 // Send to a specific email if provided
-                const res = await axiosInstance.post(`${BASE_URL}/api/email/send`, { 
+                const res = await axiosInstance.post(`/email/send`, { 
                     recipient_email: email,
                     subject: "Emergency Alert: Disaster Warning",
                     message: "This is an important alert regarding an ongoing disaster situation. Please take necessary precautions and follow official guidelines."
@@ -42,7 +42,7 @@ export const useGOVStore = create((set, get) => ({
                 let successCount = 0;
                 for (const userEmail of userEmails) {
                     try {
-                        await axiosInstance.post(`${BASE_URL}/api/email/send`, { 
+                        await axiosInstance.post(`/email/send`, { 
                             recipient_email: userEmail,
                             subject: "Emergency Alert: Disaster Warning",
                             message: "This is an important alert regarding an ongoing disaster situation. Please take necessary precautions and follow official guidelines."

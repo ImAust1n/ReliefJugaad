@@ -3,9 +3,10 @@ import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { Message, ChatState } from '../types/messageTypes';
 import { MessageSquare } from 'lucide-react';
-import { saveMessage, getAllMessages } from '../utils/db';
+import { saveMessage, getAllMessages, clearMessages } from '../utils/db';
 import useChatStore from '../store/useChatStore';
 import React from 'react';
+import { useSpeechSynthesis } from '../utils/useSpeech';
 
 type ChatResponse = {
   result: string[];
@@ -14,6 +15,7 @@ type ChatResponse = {
 
 function ChatBotApp() {
   const { result, fetchHello } = useChatStore() as ChatResponse;
+  const { speak } = useSpeechSynthesis();
 
   const [chatState, setChatState] = useState<ChatState>({
     messages: [],
@@ -21,6 +23,14 @@ function ChatBotApp() {
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  // Track the last spoken bot message ID
+  const lastSpokenBotMsgId = useRef<string | null>(null);
+  // Track if initial messages have loaded
+  const hasLoadedInitialMessages = useRef(false);
+
+  // useEffect(() => {
+  //   clearMessages();
+  // }, []);
 
   useEffect(() => {
     const loadMessages = async () => {
@@ -31,22 +41,25 @@ function ChatBotApp() {
           messages: savedMessages
         }));
       }
+      hasLoadedInitialMessages.current = true;
     };
     loadMessages();
   }, []);
 
-  // Scroll to bottom when messages change, but only if it's a new message (not initial load)
+  // Speak only when a new bot message is added after initial load
   useEffect(() => {
-    if (chatState.messages.length > 0) {
-      const newMessage = chatState.messages[chatState.messages.length - 1];
-      if (newMessage.sender === 'user') {
-        const lastMessage = document.getElementsByClassName('message')[document.getElementsByClassName('message').length - 1];
-        if (lastMessage) {
-          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+    if (!hasLoadedInitialMessages.current) return;
+    if (chatState.messages.length === 0) return;
+    const lastMsg = chatState.messages[chatState.messages.length - 1];
+    if (
+      lastMsg.sender === 'bot' &&
+      lastMsg.id !== lastSpokenBotMsgId.current
+    ) {
+      speak(lastMsg.content.replace(/<[^>]+>/g, ''));
+      lastSpokenBotMsgId.current = lastMsg.id;
     }
-  }, [chatState.isTyping]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatState.messages]);
 
   const handleSendMessage = async (content: string) => {
     const userMessage: Message = {
@@ -82,6 +95,12 @@ function ChatBotApp() {
       }));
     }, 1000);
   };
+
+  useEffect(() => {
+    if (chatState.messages.length > 0) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   return (
     <div className="h-[75vh] bg-[#111B21] flex">

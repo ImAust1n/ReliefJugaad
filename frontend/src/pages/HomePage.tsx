@@ -5,7 +5,7 @@ import HomeSection3 from '../components/HomeSection3'
 import HomeSection4 from '../components/HomeSection4'
 import News from '../components/News'
 import { useDisasterStore } from '../store/useDisasterStore'
-import ChatBot from '../components/ChatBot'
+import ChatBotApp from '../components/ChatBotApp'
 
 
 const HomePage = () => {
@@ -22,7 +22,7 @@ const HomePage = () => {
       <HomeSection3 />
       <HomeSection4 />
       <News />
-      <ChatBot />
+      <ChatBotApp />
     </div>
   )
 }
