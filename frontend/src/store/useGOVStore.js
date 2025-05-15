@@ -1,11 +1,11 @@
-import {create} from "zustand";
-import { axiosInstance } from "../lib/axios";
+import { create } from "zustand";
+import { axiosInstance } from "../libs/axios";
 import toast from "react-hot-toast";
 
 const BASE_URL = "http://localhost:5001";
 
 export const useGOVStore = create((set, get) => ({
-    authGOV:null,
+    authGOV: null,
     isSigningUp: false,
     isLoggingIn: false,
     isCheckingAuth: true,
@@ -27,10 +27,10 @@ export const useGOVStore = create((set, get) => ({
     sendEmail: async (email) => {
         try {
             const { userEmails } = get();
-            
+
             if (email) {
                 // Send to a specific email if provided
-                const res = await axiosInstance.post(`/email/send`, { 
+                const res = await axiosInstance.post(`/email/send`, {
                     recipient_email: email,
                     subject: "Emergency Alert: Disaster Warning",
                     message: "This is an important alert regarding an ongoing disaster situation. Please take necessary precautions and follow official guidelines."
@@ -42,7 +42,7 @@ export const useGOVStore = create((set, get) => ({
                 let successCount = 0;
                 for (const userEmail of userEmails) {
                     try {
-                        await axiosInstance.post(`/email/send`, { 
+                        await axiosInstance.post(`/email/send`, {
                             recipient_email: userEmail,
                             subject: "Emergency Alert: Disaster Warning",
                             message: "This is an important alert regarding an ongoing disaster situation. Please take necessary precautions and follow official guidelines."
@@ -52,7 +52,7 @@ export const useGOVStore = create((set, get) => ({
                         console.log(`Failed to send email to ${userEmail}:`, err);
                     }
                 }
-                
+
                 if (successCount === userEmails.length) {
                     toast.success(`Emergency alerts sent to all ${successCount} recipients`);
                 } else if (successCount > 0) {
@@ -66,22 +66,22 @@ export const useGOVStore = create((set, get) => ({
             toast.error("Failed to send emergency alert emails");
         }
     },
-    
+
     checkAuth: async () => {
         try {
             const res = await axiosInstance.get("/gov/check");
-            
-            set({ authGOV:res.data });
+
+            set({ authGOV: res.data });
         } catch (error) {
             console.log("Error in checkAuth:", error);
-            set({authGOV:null})
+            set({ authGOV: null })
         } finally {
-            set({isCheckingAuth: false});
+            set({ isCheckingAuth: false });
         }
     },
 
     signup: async (data) => {
-        set({ isSigningUp:true });
+        set({ isSigningUp: true });
         try {
             const res = await axiosInstance.post('/gov/signup', data);
             toast.success("Account created successfully");

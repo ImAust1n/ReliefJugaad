@@ -1,5 +1,5 @@
-import {create} from "zustand";
-import { axiosInstance } from "../lib/axios";
+import { create } from "zustand";
+import { axiosInstance } from "../libs/axios";
 import toast from "react-hot-toast";
 
 const BASE_URL = "http://localhost:5001";

@@ -4,27 +4,27 @@ import React, { CSSProperties, useEffect } from 'react';
 import L from 'leaflet';
 
 import { useDisasterStore } from '../store/useDisasterStore';
-import { statesMap } from '../lib/utils';
+import { statesMap } from '../libs/utilsState';
 // Fix for default marker icons in React Leaflet
 
 export default function Map(props) {
 
-  const {disasters, nasaDisasters} = useDisasterStore();
+  const { disasters, nasaDisasters } = useDisasterStore();
 
   const locations = disasters.map((item) => ({
-      id: item._id,
-      state: item.state,
-      coordinates: [statesMap.states.find(state => state.name === item.state)?.latitude || 0, statesMap.states.find(state => state.name === item.state)?.longitude || 0],
-      type: item.type,
-    }));
+    id: item._id,
+    state: item.state,
+    coordinates: [statesMap.states.find(state => state.name === item.state)?.latitude || 0, statesMap.states.find(state => state.name === item.state)?.longitude || 0],
+    type: item.type,
+  }));
 
-    const locations2 = nasaDisasters.map((item) => ({
-      id: item.id,
-      state: item.state,
-      coordinates: item.coordinates,
-      type: item.type,
-    }));
-    
+  const locations2 = nasaDisasters.map((item) => ({
+    id: item.id,
+    state: item.state,
+    coordinates: item.coordinates,
+    type: item.type,
+  }));
+
   return (
     <MapContainer
       center={[20.5937, 78.9629]}
@@ -38,9 +38,9 @@ export default function Map(props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <ZoomControl position="bottomright" />
-      
+
       {locations.map((location) => (
-        <Marker 
+        <Marker
           key={location.id}
           position={location.coordinates}
         >
@@ -54,7 +54,7 @@ export default function Map(props) {
       ))}
 
       {locations2.map((location) => (
-        <Marker 
+        <Marker
           key={location.id}
           position={location.coordinates}
         >

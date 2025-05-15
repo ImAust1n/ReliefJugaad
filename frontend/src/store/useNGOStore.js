@@ -1,11 +1,11 @@
-import {create} from "zustand";
-import { axiosInstance } from "../lib/axios";
+import { create } from "zustand";
+import { axiosInstance } from "../libs/axios";
 import toast from "react-hot-toast";
 
 const BASE_URL = "http://localhost:5001";
 
 export const useNGOStore = create((set, get) => ({
-    authNGO:null,
+    authNGO: null,
     isSigningUp: false,
     isLoggingIn: false,
     isCheckingAuth: true,
@@ -14,18 +14,18 @@ export const useNGOStore = create((set, get) => ({
     checkAuth: async () => {
         try {
             const res = await axiosInstance.get("/ngos/check");
-            
-            set({ authNGO:res.data });
+
+            set({ authNGO: res.data });
         } catch (error) {
             console.log("Error in checkAuth:", error);
-            set({authNGO:null})
+            set({ authNGO: null })
         } finally {
-            set({isCheckingAuth: false});
+            set({ isCheckingAuth: false });
         }
     },
 
     signup: async (data) => {
-        set({ isSigningUp:true });
+        set({ isSigningUp: true });
         try {
             const res = await axiosInstance.post('/ngos/signup', data);
             console.log(res.data);

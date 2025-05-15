@@ -21,7 +21,7 @@ function IDCardPage() {
       // Format the join date (assuming authUser.createdAt is a timestamp or date string)
       const joinDate = new Date(authUser.createdAt || Date.now());
       const formattedDate = joinDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      
+
       setVolunteerData({
         name: authUser.fullName || authUser.username || "Volunteer",
         id: `VOL-${new Date().getFullYear()}-${String(authUser.id || '0000').padStart(4, '0')}`,
@@ -38,7 +38,7 @@ function IDCardPage() {
   const handleDownload = () => {
     const card = cardRef.current;
     if (card) {
-      // Use a library like html2canvas to capture the entire card
+      // Use a libsrary like html2canvas to capture the entire card
       html2canvas(card).then(canvas => {
         const pngFile = canvas.toDataURL('image/png');
         const downloadLink = document.createElement('a');
@@ -52,7 +52,7 @@ function IDCardPage() {
       console.error("Could not find the ID card element");
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-[#000F0B] flex flex-col items-center justify-center p-4">
       {/* ID Card Container */}
@@ -111,23 +111,23 @@ function IDCardPage() {
 
         {/* Download Button */}
         <div className="p-4 bg-[#054938] mt-4">
-          
+
         </div>
       </div>
       <div className='flex flex-row gap-5 justify-center'>
-      <button
-            onClick={handleDownload}
-            className="bg-[#22C55E] hover:bg-[#00BC4C] text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
-          >
-            <Download className="w-5 h-5" />
-            Download ID Card
-          </button>
-          <a 
-            href="https://chat.whatsapp.com/EAmJLXl32KwBM9I0kHGnln"
+        <button
+          onClick={handleDownload}
+          className="bg-[#22C55E] hover:bg-[#00BC4C] text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
+        >
+          <Download className="w-5 h-5" />
+          Download ID Card
+        </button>
+        <a
+          href="https://chat.whatsapp.com/EAmJLXl32KwBM9I0kHGnln"
           className="bg-[#22C55E] hover:bg-[#00BC4C] text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300">
-            Join Whatsapp Community
-          </a>
-        </div>
+          Join Whatsapp Community
+        </a>
+      </div>
 
       <p className="text-[#3FEBD0] mt-6 text-center max-w-md text-sm">
         This ID card is property of HeliCooperator. If found, please return to the nearest HeliCooperator facility.

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Sun, CloudRain, Thermometer, MapPin } from 'lucide-react';
 import WeatherCard from './WeatherCard';
-import { statesMap } from '../lib/utils.js';
+import { statesMap } from '../libs/utilsState.js';
 import { useDisasterStore } from '../store/useDisasterStore';
 import { useGOVStore } from '../store/useGOVStore';
 import Map from './Map.jsx';
@@ -52,34 +52,32 @@ function HomeSection2() {
               {items.map((item, index) => (
                 <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">
                   <div><h3 className="text-lg text-white font-semibold">{item.type}</h3>
-                  <p className="text-gray-200">State : {item.state}</p>
-                  <p className="text-gray-200">Severity : {item.severity}</p></div>
+                    <p className="text-gray-200">State : {item.state}</p>
+                    <p className="text-gray-200">Severity : {item.severity}</p></div>
                   <div className='flex flex-col gap-2'>
                     <a
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    href={`https://www.google.com/maps?q=${
-                      statesMap.states.find(state => state.name === item.state)?.latitude
-                    },${
-                      statesMap.states.find(state => state.name === item.state)?.longitude
-                    }&ll=20.5937,78.9629&z=5`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleViewOnMap(item.state)}
-                  >
-                    View on Map
-                  </a>
-                  {authGOV && (
-                    <button
-                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                      onClick={() => {
-                        closeDisaster(item._id);
-                      }}
+                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                      href={`https://www.google.com/maps?q=${statesMap.states.find(state => state.name === item.state)?.latitude
+                        },${statesMap.states.find(state => state.name === item.state)?.longitude
+                        }&ll=20.5937,78.9629&z=5`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleViewOnMap(item.state)}
                     >
-                      Close Disaster
-                    </button>
-                  )}
+                      View on Map
+                    </a>
+                    {authGOV && (
+                      <button
+                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                        onClick={() => {
+                          closeDisaster(item._id);
+                        }}
+                      >
+                        Close Disaster
+                      </button>
+                    )}
                   </div>
-            </div>
+                </div>
               ))}
             </div>
           )}

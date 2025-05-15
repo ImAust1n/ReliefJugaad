@@ -6,11 +6,11 @@ import DisasterCard from '../components/DisasterCard';
 import { Link } from 'react-router-dom';
 import Map from '../components/Map';
 import { useDisasterStore } from '../store/useDisasterStore';
-import { statesMap } from '../lib/utils';
+import { statesMap } from '../libs/utilsState';
 import ImpactDashboard from '../components/ImpactDashboard';
 import ChatBotApp from '../components/ChatBotApp';
 
-function  DonatePage() {
+function DonatePage() {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('map'); // Initialize activeTab state
   const { disasters: items, closeDisaster, getAllDisasters } = useDisasterStore();
@@ -125,13 +125,13 @@ function  DonatePage() {
     },
   ];
 
-    const handleViewOnMap = (location: string) => {
-        // Replace with actual logic to switch to map view and show the location
-        setActiveTab('map');
-        // Example: using a simple alert, replace with your map integration logic
-        alert(`Viewing location on map: ${location}`);
+  const handleViewOnMap = (location: string) => {
+    // Replace with actual logic to switch to map view and show the location
+    setActiveTab('map');
+    // Example: using a simple alert, replace with your map integration logic
+    alert(`Viewing location on map: ${location}`);
 
-    };
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#112221] to-[#000F0B] text-white">
@@ -299,53 +299,51 @@ function  DonatePage() {
             Active Disaster Aid Requests
           </h2>
           <div className="mt-8">
-          <div className="flex justify-center border-b border-gray-300 mb-4 space-x-4">
-            <button
-              className={`px-4 py-2 ${activeTab === 'map' ? 'border-b-2 border-blue-500 text-[#22C55E]' : 'text-white'}`}
-              onClick={() => setActiveTab('map')}
-            >
-              Map
-            </button>
-            <button
-              className={`px-4 py-2 ${activeTab === 'list' ? 'border-b-2 border-blue-500 text-[#22C55E]' : 'text-white'}`}
-              onClick={() => setActiveTab('list')}
-            >
-              List
-            </button>
-          </div>
+            <div className="flex justify-center border-b border-gray-300 mb-4 space-x-4">
+              <button
+                className={`px-4 py-2 ${activeTab === 'map' ? 'border-b-2 border-blue-500 text-[#22C55E]' : 'text-white'}`}
+                onClick={() => setActiveTab('map')}
+              >
+                Map
+              </button>
+              <button
+                className={`px-4 py-2 ${activeTab === 'list' ? 'border-b-2 border-blue-500 text-[#22C55E]' : 'text-white'}`}
+                onClick={() => setActiveTab('list')}
+              >
+                List
+              </button>
+            </div>
 
-          {/* Map or List Content */}
-          {activeTab === 'map' ? (
-            <Map height="450px" />
-          ) : (
-            <div className="max-h-112.5 overflow-y-auto space-y-4">
-              {console.log(items)}
-              {items.map((item, index) => (
-                <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">
-                  <div><h3 className="text-lg text-white font-semibold">{item.type}</h3>
-                  <p className="text-gray-200">State : {item.state}</p>
-                  <p className="text-gray-200">Severity : {item.severity}</p></div>
-                  <div className='flex flex-col gap-2'>
-                    <a
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    href={`https://www.google.com/maps?q=${
-                      statesMap.states.find(state => state.name === item.state)?.latitude
-                    },${
-                      statesMap.states.find(state => state.name === item.state)?.longitude
-                    }&ll=20.5937,78.9629&z=5`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleViewOnMap(item.state)}
-                  >
-                    View on Map
-                  </a>
+            {/* Map or List Content */}
+            {activeTab === 'map' ? (
+              <Map height="450px" />
+            ) : (
+              <div className="max-h-112.5 overflow-y-auto space-y-4">
+                {console.log(items)}
+                {items.map((item, index) => (
+                  <div key={index} className="flex justify-between p-4 bg-[#054938] shadow-md rounded-lg border border-gray-200">
+                    <div><h3 className="text-lg text-white font-semibold">{item.type}</h3>
+                      <p className="text-gray-200">State : {item.state}</p>
+                      <p className="text-gray-200">Severity : {item.severity}</p></div>
+                    <div className='flex flex-col gap-2'>
+                      <a
+                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        href={`https://www.google.com/maps?q=${statesMap.states.find(state => state.name === item.state)?.latitude
+                          },${statesMap.states.find(state => state.name === item.state)?.longitude
+                          }&ll=20.5937,78.9629&z=5`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => handleViewOnMap(item.state)}
+                      >
+                        View on Map
+                      </a>
+                    </div>
                   </div>
-            </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-10">
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-10">
             {disasters.map((disaster) => (
               <DisasterCard
                 key={disaster.name}

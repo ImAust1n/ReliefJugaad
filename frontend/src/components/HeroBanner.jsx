@@ -4,7 +4,7 @@ export default function HeroBanner() {
   return (
     <div className="relative h-[600px] w-full overflow-hidden">
       <div
-        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3')]
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlibs=rb-4.0.3')]
         bg-cover bg-center"
         style={{ filter: 'brightness(0.7)' }}
       />
