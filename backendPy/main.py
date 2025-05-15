@@ -94,60 +94,66 @@ def chat3():
 
     return jsonify({"response": response['message']['content']})
 
-@app.route('/api/evacuation', methods=['POST'])
-def evacuation():
+@app.route('/api/evacutation', methods=['POST'])
+def evacutation():
     user_input = request.json.get('message')
-    API_KEY = "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"
-    MODEL = "deepseek/deepseek-r1:free"
-
-    url = "https://openrouter.ai/api/v1/chat/completions"
-    headers = {
-        f"Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
-
-    data = {
-        "model": MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "You are an AI Disaster Response Planner, specializing in emergency preparedness, "
-                    "relief coordination, and resource management. Your goal is to generate a well-structured, "
-                    "actionable disaster response plan based on the provided situation, available resources, "
-                    "and required skills. \n\n"
-                    "Your response should include:\n"
-                    "1. Risk Assessment - Identify the severity and impact of the disaster.\n"
-                    "2. Resource Allocation - Assign food, water, medical aid, and volunteers efficiently.\n"
-                    "3. Rescue & Evacuation Plan - Outline safe zones, shelters, and transport methods.\n"
-                    "4. Communication Strategy - Define how emergency updates reach authorities and civilians.\n"
-                    "5. Team Assignments - Allocate people with specific skills to roles that maximize efficiency.\n"
-                    "6. Contingency Planning - Backup plans in case of worsening conditions or resource shortages.\n"
-                    "7. Recovery & Rehabilitation - Long-term recovery efforts post-disaster."
-                )
-            },
-            {"role": "user", "content": user_input}
-        ],
-        "temperature": 0.7,  # Adjusts randomness; higher = more creative
-        "top_p": 0.9,  # Controls token probability sampling
-    }
+    
 
 
-    try:
-        response = requests.post(url, headers=headers, data=json.dumps(data))
+# @app.route('/api/evacuation', methods=['POST'])
+# def evacuation():
+#     user_input = request.json.get('message')
+#     API_KEY = "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"
+#     MODEL = "deepseek/deepseek-r1:free"
+
+#     url = "https://openrouter.ai/api/v1/chat/completions"
+#     headers = {
+#         f"Authorization": f"Bearer {API_KEY}",
+#         "Content-Type": "application/json"
+#     }
+
+#     data = {
+#         "model": MODEL,
+#         "messages": [
+#             {
+#                 "role": "system",
+#                 "content": (
+#                     "You are an AI Disaster Response Planner, specializing in emergency preparedness, "
+#                     "relief coordination, and resource management. Your goal is to generate a well-structured, "
+#                     "actionable disaster response plan based on the provided situation, available resources, "
+#                     "and required skills. \n\n"
+#                     "Your response should include:\n"
+#                     "1. Risk Assessment - Identify the severity and impact of the disaster.\n"
+#                     "2. Resource Allocation - Assign food, water, medical aid, and volunteers efficiently.\n"
+#                     "3. Rescue & Evacuation Plan - Outline safe zones, shelters, and transport methods.\n"
+#                     "4. Communication Strategy - Define how emergency updates reach authorities and civilians.\n"
+#                     "5. Team Assignments - Allocate people with specific skills to roles that maximize efficiency.\n"
+#                     "6. Contingency Planning - Backup plans in case of worsening conditions or resource shortages.\n"
+#                     "7. Recovery & Rehabilitation - Long-term recovery efforts post-disaster."
+#                 )
+#             },
+#             {"role": "user", "content": user_input}
+#         ],
+#         "temperature": 0.7,  # Adjusts randomness; higher = more creative
+#         "top_p": 0.9,  # Controls token probability sampling
+#     }
+
+
+#     try:
+#         response = requests.post(url, headers=headers, data=json.dumps(data))
         
-        if response.status_code == 200:
-            result = response.json()
-            choice = result.get("choices", [{}])[0]
-            bot_response = choice.get("message", {}).get("content", "No response available")
-            finish_reason = choice.get("finish_reason", "")
+#         if response.status_code == 200:
+#             result = response.json()
+#             choice = result.get("choices", [{}])[0]
+#             bot_response = choice.get("message", {}).get("content", "No response available")
+#             finish_reason = choice.get("finish_reason", "")
 
-            return jsonify({"response": bot_response.strip()})
-        else:
-            return jsonify({"response": "Error: " + response.text})
+#             return jsonify({"response": bot_response.strip()})
+#         else:
+#             return jsonify({"response": "Error: " + response.text})
 
-    except requests.exceptions.RequestException as e:
-        return jsonify({"response": "Error: " + str(e)})
+#     except requests.exceptions.RequestException as e:
+#         return jsonify({"response": "Error: " + str(e)})
 
 
 # torch.device("cpu")
