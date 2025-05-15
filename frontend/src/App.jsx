@@ -43,6 +43,7 @@ import ScrollToTop from './components/ScrollToTop';
 import DIC from './pages/DIC';
 
 import Prediction from './pages/Prediction';
+import Planner from './pages/Planner';
 
 const App = () => {
   const { authUser, checkAuth: checkAuthUser, isCheckingAuth: isCheckingAuthUser } = useAuthStore();
@@ -115,6 +116,7 @@ const App = () => {
 
 
         <Route path="/prediction" element={<Prediction />} />
+        <Route path="/planner" element={<Planner />} />
       </Routes>
 
       <Footer />

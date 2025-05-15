@@ -419,6 +419,14 @@ function SurvivalGuide() {
             Download Survival Guide
           </button>
           </a>
+
+          <a href="https://preview--rescue-command-nexus-12.lovable.app/" target="_blank">
+          <button
+            className="mt-4 ml-4 bg-[#22C55E] hover:bg-[#00BC4C] text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
+          >
+            Have a fun Play
+          </button>
+          </a>
         </header>
 
         {!showQuiz ? (
