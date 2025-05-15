@@ -97,7 +97,15 @@ def chat3():
 @app.route('/api/evacutation', methods=['POST'])
 def evacutation():
     user_input = request.json.get('message')
-    
+    response = ollama.chat(
+        model="llama3.2",
+        messages=[
+            {"role": "system", "content": "You are an expert in disaster assessment and help people in need. Give short and concise responses."},
+            {"role": "user", "content": f"give a disaster rescue and coordination action plan for government and rescue staffs considering this{user_input}"},
+        ]
+    )
+
+    return jsonify({"response": response['message']['content']})
 
 
 # @app.route('/api/evacuation', methods=['POST'])
