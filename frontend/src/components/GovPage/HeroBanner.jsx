@@ -54,6 +54,18 @@ const HeroBanner = () => {
                   Track Relief Operations
                 </motion.button>
               </Link>
+
+              <a href="http://127.0.0.1:5501/index.html">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-2 px-8 py-4 cursor-pointer bg-[#054938] border border-[#00BC4C]/20 text-white rounded-lg font-semibold hover:bg-[#000F0B] transition-colors"
+                >
+                  <Users size={20} />
+                  Drone
+                </motion.button>
+              </a>
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
